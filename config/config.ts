@@ -6,7 +6,7 @@ let config: Config
 const c = useRuntimeConfig()
 if (c.public.environment === 'development') {
     config = {
-        API_URL: 'http://localhost:9061',
+        API_URL: 'http://localhost:6101',
     }
 } else if (c.public.environment === 'test') {
     config = {

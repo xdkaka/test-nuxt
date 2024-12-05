@@ -1,6 +1,5 @@
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
-import Cookies from 'js-cookie'
 import config from '@/config/config'
 import qs from 'qs';
 
@@ -20,18 +19,13 @@ interface ApiResponse {
 
 async function request(content: RequestParams): Promise<ApiResponse> {
   try {
-    const { api_url = 'DOMAIN_API_URL' } = content || {}
-    let apiUrl = api_url === "DOMAIN_API_URL" ? config.DOMAIN_API_URL : config.RANDOM_API_URL
     const { params = {}, method = 'post', path = '' } = content || {}
-    const token = Cookies.get(config.COOKIES.TOKEN)
-    if (token) { params.token = token }
-    
     params.browser_language = navigator.language;
     params.browser_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
     let requestInfo: AxiosRequestConfig = {
       method,
-      url: apiUrl + path,
+      url: config.API_URL + path,
       headers: {}
     };    
     
