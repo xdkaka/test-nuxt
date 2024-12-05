@@ -3,13 +3,31 @@
     <div class="tools" :class="{ 'black-bg': black === 1 }">
       <div class="tools-inner">
         <div class="tools-column">
-          <h3>域名解析查询</h3>
-          <a href="https://getmx.com" target="_blank">A解析查询</a>
-          <a href="https://getmx.com/mx" target="_blank">CNAME解析查询</a>
+          <h3>域名查询</h3>
+          <a v-for="item in dnsQueries" 
+             :key="item.value" 
+             :href="item.page" 
+             target="_blank">
+            {{ item.label }}
+          </a>
         </div>
         <div class="tools-column">
           <h3>IP查询</h3>
-          <a href="https://getmx.com/mx" target="_blank">PTR反解析查询</a>
+          <a v-for="item in ipQueries" 
+             :key="item.value" 
+             :href="item.page" 
+             target="_blank">
+            {{ item.label }}
+          </a>
+        </div>
+        <div class="tools-column">
+          <h3>Host查询</h3>
+          <a v-for="item in hostQueries" 
+             :key="item.value" 
+             :href="item.page" 
+             target="_blank">
+            {{ item.label }}
+          </a>
         </div>
       </div>
     </div>
@@ -19,6 +37,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { computed } from 'vue';
+import { QueryTypeList } from './model';
+
 const localePath = useLocalePath();
 defineProps({
   black: {
@@ -26,6 +47,10 @@ defineProps({
     default: -1,
   },
 });
+
+const dnsQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "domain"));
+const ipQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "ip"));
+const hostQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "host"));
 </script>
 
 <style scoped>

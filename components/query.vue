@@ -21,11 +21,11 @@
                 style="width: 150px"
                 @change="handleTypeChange"
               >
-                <el-option 
-                  v-for="item in QueryTypeList" 
+                <el-option
+                  v-for="item in QueryTypeList"
                   :key="item.value"
-                  :label="item.label" 
-                  :value="item.value" 
+                  :label="item.label"
+                  :value="item.value"
                 />
               </el-select>
             </template>
@@ -37,8 +37,8 @@
             size="large"
             :loading="loading"
           >
-          <el-icon v-if="!loading"><MagicStick /></el-icon> 
-          <span style="margin-left: 10px;" >查 询</span>
+            <el-icon v-if="!loading"><MagicStick /></el-icon>
+            <span style="margin-left: 10px">查 询</span>
           </el-button>
         </div>
       </section>
@@ -47,29 +47,85 @@
         v-if="showTable"
         :data="tableData"
         :span-method="arraySpanMethod"
-        style="width: 100%; margin-top: 20px"
         :row-class-name="tableRowClassName"
+        :fit="true"
       >
-        <el-table-column 
-          v-for="column in currentColumns" 
+        <!-- :border="true" -->
+        <el-table-column
+          v-for="column in currentColumns"
           :key="column.prop"
           :prop="column.prop"
           :label="column.label"
-          :width="getColumnWidth(column.prop)"
+          :min-width="column.minWidth"
         >
-          <template #default="scope" v-if="column.prop === 'ip'">
-            <div>
-              <div>
-                {{ scope.row.ip }}
-              </div>
-              <el-tag v-if="scope.row.location" type="warning" size="mini" >
+          <template #default="scope">
+            <template v-if="column.prop === 'ip'">
+              <div class="ip-cell" v-if="scope.row.ip">
+                <div>{{ scope.row.ip }}</div>
+                <el-icon
+                  v-if="!scope.row.failed"
+                  class="copy-icon"
+                  @click="copyToClipboard(scope.row.ip)"
+                >
+                  <DocumentCopy />
+                </el-icon>
+                <el-tag v-if="scope.row.location" type="warning" size="mini">
                   {{ scope.row.location }}
-              </el-tag>
-            </div>
+                </el-tag>
+              </div>
+            </template>
+            <template v-else-if="column.prop === 'rtt'">
+              <span v-if="scope.row.failed">查询失败</span>
+              <span v-else :class="getRttClass(scope.row.rtt)">
+                {{ formatRtt(scope.row.rtt) }}
+              </span>
+            </template>
+            <template v-else-if="column.prop === 'ttl'">
+              <template v-if="scope.row.ttl">{{ scope.row.ttl }}s</template>
+            </template>
+            <template v-else-if="column.prop === 'txt'">
+              <div class="value-cell">
+                <div v-for="(item, index) in scope.row.txt" :key="index">
+                  {{ item }}
+                  <el-icon
+                    v-if="item && item !== '' && !scope.row.failed"
+                    class="copy-icon"
+                    @click="copyToClipboard(item)"
+                  >
+                    <DocumentCopy />
+                  </el-icon>
+                </div>
+              </div>
+            </template>
+            <template
+              v-else-if="
+                ['value', 'target', 'host', 'ptr'].includes(column.prop)
+              "
+            >
+              <div class="value-cell">
+                {{ scope.row[column.prop] || "-" }}
+                <el-icon
+                  v-if="
+                    scope.row[column.prop] &&
+                    scope.row[column.prop] !== '' &&
+                    !scope.row.failed
+                  "
+                  class="copy-icon"
+                  @click="copyToClipboard(scope.row[column.prop])"
+                >
+                  <DocumentCopy />
+                </el-icon>
+              </div>
+            </template>
+            <template v-else>
+              <div class="value-cell">
+                <div>{{ scope.row[column.prop] || "-" }}</div>
+              </div>
+            </template>
           </template>
         </el-table-column>
       </el-table>
-    
+
       <div v-if="loading" class="loading-container">
         <el-icon class="is-loading"><Loading /></el-icon>
         <span class="loading-text">加载中...</span>
@@ -92,11 +148,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Loading,MagicStick } from '@element-plus/icons-vue'
-import type { TableColumnCtx } from 'element-plus'
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { getRegionList,queryDNS } from "~/api/query";
+import { Loading, MagicStick, DocumentCopy } from "@element-plus/icons-vue";
+import type { TableColumnCtx } from "element-plus";
+import { ref, computed, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { getRegionList, queryDNS } from "~/api/query";
+import { QueryTypeList } from "./model";
 
 // MX记录类型定义
 interface DNSRecordMX {
@@ -131,139 +188,202 @@ interface DNSRecordCNAME {
   rtt: string;
 }
 
+// NS记录类型定义
+interface DNSRecordNS {
+  type: string;
+  host: string;
+  ip: string;
+  location: string;
+  ttl: number;
+  name: string;
+  rtt: string;
+}
+
+// TXT记录类型定义
+interface DNSRecordTXT {
+  type: string;
+  txt: string[];
+  ttl: number;
+  name: string;
+  rtt: string;
+}
+
+// PTR记录类型定义
+interface DNSRecordPTR {
+  type: string;
+  ptr: string;
+  ttl: number;
+  name: string;
+  rtt: string;
+  ip: string;
+  location: string;
+}
+
+// PING记录类型定义
+interface DNSRecordPing {
+  type: string;
+  rtt: string;
+  name: string;
+  ip: string;
+  location: string;
+}
+
 interface Dns {
-  region: string
-  value: string
-  priority: string
-  ttl: string
-  isGrey: boolean,
-  rowSpan?: number
-  ip?: string
-  location?: string
-  rtt?: string
-  target?: string
+  region: string;
+  value: string;
+  priority: string;
+  ttl: string;
+  isGrey: boolean;
+  rowSpan?: number;
+  ip?: string;
+  location?: string;
+  rtt?: string;
+  target?: string;
+  failed?: boolean;
+  txt?: string[];
+  ptr?: string;
+  host?: string;
 }
 
 interface TableColumn {
-  prop: string
-  label: string
-  width?: string
+  prop: string;
+  label: string;
+  width?: string;
 }
 
 interface SpanMethodProps {
-  row: Dns
-  column: TableColumnCtx<Dns>
-  rowIndex: number
-  columnIndex: number
+  row: Dns;
+  column: TableColumnCtx<Dns>;
+  rowIndex: number;
+  columnIndex: number;
 }
 
-interface QueryType {
-  label: string;
-  value: string;
-  page: string;
-}
-
-const router = useRouter()
+const router = useRouter();
+const route = useRoute();
 const loading = ref<boolean>(false);
 const showTable = ref<boolean>(false);
 
-// 定义不同记录类型的列配置
-const columnConfig = {
-  mx: [
-    { prop: 'region', label: '检测地区', width: '180' },
-    { prop: 'value', label: '记录值' },
-    { prop: 'priority', label: '优先级' },
-    { prop: 'ttl', label: 'TTL' },
-    { prop: 'ip', label: 'IP' },
-    { prop: 'rtt', label: '响应时间' }
-  ],
-  a: [
-    { prop: 'region', label: '检测地区', width: '180' },
-    { prop: 'ip', label: 'IP' },
-    { prop: 'ttl', label: 'TTL' },
-    { prop: 'rtt', label: '响应时间' }
-  ],
-  cname: [
-    { prop: 'region', label: '检测地区', width: '180' },
-    { prop: 'target', label: '记录值' },
-    { prop: 'ip', label: 'IP' },
-    { prop: 'ttl', label: 'TTL' },
-    { prop: 'rtt', label: '响应时间' }
-  ]
-};
+import { columnConfig } from "./model";
 
 // 根据当前记录类型获取对应的列配置
 const currentColumns = computed(() => {
-  return columnConfig[currentQueryType.value.toLowerCase() as keyof typeof columnConfig] || [];
+  return (
+    columnConfig[
+      currentQueryType.value.toLowerCase() as keyof typeof columnConfig
+    ] || []
+  );
 });
 
-// 根据列的prop获取列的宽度
-const getColumnWidth = (prop: string) => {
-  if (prop === 'ip') {
-    return '250';
-  } else if (prop === 'region') {
-    return '100';
-  }
-  return '';
-};
-
-const arraySpanMethod = ({ row, column, rowIndex, columnIndex }: SpanMethodProps) => {
-  if (columnIndex === 0) { // 第一列进行合并
+const arraySpanMethod = ({
+  row,
+  column,
+  rowIndex,
+  columnIndex,
+}: SpanMethodProps) => {
+  if (columnIndex === 0) {
+    // 第一列进行合并
     if (row.rowSpan !== undefined) {
       return {
         rowspan: row.rowSpan,
-        colspan: 1
+        colspan: 1,
       };
     }
   }
   return {
     rowspan: 1,
-    colspan: 1
+    colspan: 1,
   };
-}
+};
 
-const tableRowClassName = ({
-  row
-}: {
-  row: Dns
-  rowIndex: number
-}) => {
-  if (row.isGrey) {
-    return 'row-grey'
+const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
+  if (row.failed) {
+    return "row-failed";
   }
-  return ''
-}
+  if (row.isGrey) {
+    return "row-grey";
+  }
+  return "";
+};
 
 // 响应式变量定义
 const { t } = useI18n();
-const QueryTypeList = ref<QueryType[]>([
-  { label: "MX解析", value: "mx", page: "/mx" },
-  { label: "A解析", value: "a", page: "/a" },
-  { label: "NS解析", value: "ns", page: "/ns" },
-  { label: "TXT解析", value: "txt", page: "/txt" }
-]);
-let currentQueryType = ref<string>("a"); // 当前选中的域名后缀
-const username = ref<string>(""); // 用户名输入框
 
-const tableData = ref<Dns[]>([])
+// 根据路由设置当前查询类型
+const currentPath = route.path.slice(1); // 去掉开头的/
+const matchedType = QueryTypeList.value.find(
+  (type) => type.page.slice(1) === currentPath
+);
+let currentQueryType = ref<string>(matchedType ? matchedType.value : "a");
+
+// 从路由参数初始化输入框值
+const username = ref<string>((route.query.host as string) || "");
+
+const tableData = ref<Dns[]>([]);
 // 记录上一次renderList的最后一个isGrey状态
 const lastIsGrey = ref<boolean>(false);
 
 // 处理记录类型变更
 const handleTypeChange = (value: string) => {
-  const selectedType = QueryTypeList.value.find(item => item.value === value)
+  const selectedType = QueryTypeList.value.find((item) => item.value === value);
   if (selectedType) {
-    router.push(selectedType.page)
+    router.push({
+      path: selectedType.page,
+      query: {
+        host: username.value,
+      },
+    });
+    username.value = (route.query.host as string) || "";
   }
-}
+};
+
+// 复制到剪贴板
+const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text).then(() => {
+    ElMessage.success("已复制到剪贴板");
+  });
+};
+
+// 格式化响应时间
+const formatRtt = (rtt: string) => {
+  if (!rtt) return "";
+  const ms = parseFloat(rtt);
+  return `${Math.floor(ms)}ms`;
+};
+
+// 获取响应时间样式
+const getRttClass = (rtt: string) => {
+  if (!rtt) return "";
+  const ms = parseFloat(rtt);
+  if (ms > 100) return "rtt-slow";
+  if (ms < 50) return "rtt-fast";
+  return "";
+};
 
 // 渲染list数据
-const renderList = (list:any[], regionKey: string)=>{
+const renderList = (list: any[], regionKey: string) => {
   // 从上次的状态开始交替
   let isGrey = !lastIsGrey.value;
-  
+
+  // 如果list为空，添加一条无数据记录
+  if (!list || list.length === 0) {
+    tableData.value.push({
+      region: regionKey,
+      value: "无数据",
+      priority: "",
+      ttl: "",
+      ip: "无数据",
+      location: "",
+      rtt: "",
+      isGrey: isGrey,
+      rowSpan: 1,
+      host: "",
+    });
+    lastIsGrey.value = isGrey;
+    return;
+  }
+
   const newRows = list.map((item, index) => {
-    if(currentQueryType.value === 'mx') {
+    if (currentQueryType.value === "mx") {
       const record = item as DNSRecordMX;
       const row: Dns = {
         region: regionKey,
@@ -274,95 +394,179 @@ const renderList = (list:any[], regionKey: string)=>{
         location: record.location,
         rtt: record.rtt,
         isGrey: isGrey,
-        rowSpan: index === 0 ? list.length : 0
+        rowSpan: index === 0 ? list.length : 0,
       };
       return row;
-    } else if(currentQueryType.value === 'a') {
+    } else if (currentQueryType.value === "a") {
       const record = item as DNSRecordA;
       const row: Dns = {
         region: regionKey,
         value: record.ip,
-        priority: '',
+        priority: "",
         ttl: String(record.ttl),
         ip: record.ip,
         location: record.location,
         rtt: record.rtt,
         isGrey: isGrey,
-        rowSpan: index === 0 ? list.length : 0
+        rowSpan: index === 0 ? list.length : 0,
       };
       return row;
-    } else if(currentQueryType.value === 'cname') {
+    } else if (currentQueryType.value === "cname") {
       const record = item as DNSRecordCNAME;
       const row: Dns = {
         region: regionKey,
-        value: '',
-        priority: '',
+        value: "",
+        priority: "",
         ttl: String(record.ttl),
         ip: record.ip,
         location: record.location,
         rtt: record.rtt,
         target: record.target,
         isGrey: isGrey,
-        rowSpan: index === 0 ? list.length : 0
+        rowSpan: index === 0 ? list.length : 0,
+      };
+      return row;
+    } else if (currentQueryType.value === "ns") {
+      const record = item as DNSRecordNS;
+      const row: Dns = {
+        region: regionKey,
+        value: record.host,
+        priority: "",
+        ttl: String(record.ttl),
+        ip: record.ip,
+        location: record.location,
+        rtt: record.rtt,
+        isGrey: isGrey,
+        rowSpan: index === 0 ? list.length : 0,
+        host: record.host,
+      };
+      return row;
+    } else if (currentQueryType.value === "txt") {
+      const record = item as DNSRecordTXT;
+      const row: Dns = {
+        region: regionKey,
+        value: "",
+        txt: record.txt,
+        priority: "",
+        ttl: String(record.ttl),
+        rtt: record.rtt,
+        isGrey: isGrey,
+        rowSpan: index === 0 ? list.length : 0,
+      };
+      return row;
+    } else if (currentQueryType.value === "ptr") {
+      const record = item as DNSRecordPTR;
+      const row: Dns = {
+        region: regionKey,
+        value: record.ptr,
+        priority: "",
+        ttl: String(record.ttl),
+        ip: record.ip,
+        location: record.location,
+        rtt: record.rtt,
+        isGrey: isGrey,
+        ptr: record.ptr,
+        rowSpan: index === 0 ? list.length : 0,
+      };
+      return row;
+    } else if (currentQueryType.value === "ping") {
+      const record = item as DNSRecordPing;
+      const row: Dns = {
+        region: regionKey,
+        value: record.ip,
+        priority: "",
+        ttl: "",
+        ip: record.ip,
+        location: record.location,
+        rtt: record.rtt,
+        isGrey: isGrey,
+        rowSpan: index === 0 ? list.length : 0,
       };
       return row;
     }
-    
+
     return {
-      region: '',
-      value: '',
-      priority: '',
-      ttl: '',
-      location: '',
-      isGrey: false
+      region: "",
+      value: "",
+      priority: "",
+      ttl: "",
+      location: "",
+      isGrey: false,
+      ptr: "",
+      host: "",
     };
   });
-  
+
   // 记录这次renderList的isGrey状态
   lastIsGrey.value = isGrey;
-  
-  tableData.value.push(...newRows);
-}
 
-const query =  async () => {
+  tableData.value.push(...newRows);
+};
+
+const query = async () => {
   if (!username.value) {
-    ElMessage({ message: "请输入域名", type: "warning" });
+    ElMessage({ message: "请输入查询的内容", type: "warning" });
     return;
   }
 
+  // 更新URL参数
+  router.push({
+    query: {
+      ...route.query,
+      host: username.value,
+    },
+  });
+
   loading.value = true;
   tableData.value = []; // 清空之前的数据
+  showTable.value = true;
 
-  let regionList:any[] = [];
+  let regionList: any[] = [];
   try {
-    const response = await getRegionList({});
+    const response = await getRegionList({
+      query_type: currentQueryType.value.toLowerCase(),
+      host: username.value,
+    });
     const { data = {} } = response || {};
     regionList = data.list || [];
-
+  } catch (err: any) {
+    const errMsg = err?.msg || String(err) || "失败";
+    ElMessage({ message: errMsg, type: "error", plain: true });
     loading.value = false;
-  } catch (err) {
-    ElMessage({ message: String(err) || "失败", type: "error", plain: true });
-    loading.value = false;
+    return;
   }
 
-  for (const region of regionList) {
-    try {
-      const response = await queryDNS({
-        region_id: region.id,
-        query_type: currentQueryType.value.toLowerCase(),
-        host: username.value
-      });
-      const { data = {} } = response || {};
-      const list = data.list || [];
-      renderList(list, region.region_key);
-      showTable.value = true;
-    } catch (err) {
-      ElMessage({ message: String(err) || "失败", type: "error", plain: true });
+  try {
+    for (const region of regionList) {
+      try {
+        const response = await queryDNS({
+          region_id: region.id,
+          query_type: currentQueryType.value.toLowerCase(),
+          host: username.value,
+        });
+        const { data = {} } = response || {};
+        const list = data.list || [];
+        renderList(list, region.region_key);
+      } catch (err: any) {
+        // 查询失败时添加失败行
+        tableData.value.push({
+          region: region.region_key,
+          value: "",
+          priority: "",
+          ttl: "",
+          ip: "",
+          location: "",
+          rtt: "",
+          isGrey: false,
+          failed: true,
+          rowSpan: 1,
+        });
+      }
     }
+  } finally {
+    loading.value = false;
   }
-}
-
-onMounted(async () => {});
+};
 </script>
 
 <style scoped>
@@ -381,7 +585,7 @@ onMounted(async () => {});
 
 /* 容器样式 */
 .dns-query__container {
-  max-width: 800px;
+  max-width: 1024px;
   margin: 2.5rem auto;
   padding: 2.5rem;
   background-color: var(--el-bg-color);
@@ -393,7 +597,6 @@ onMounted(async () => {});
   background: #fff;
   color: #000;
 }
-
 
 /* 搜索表单样式 */
 .search-section {
@@ -423,7 +626,6 @@ onMounted(async () => {});
   margin-left: -1px;
 }
 
-
 .search-form__button {
   margin-left: 10px;
   min-width: 200px;
@@ -450,7 +652,6 @@ onMounted(async () => {});
   line-height: 1.6;
 }
 
-
 @media (max-width: 767px) {
   .dns-query__container {
     padding: 1.25rem;
@@ -470,8 +671,13 @@ onMounted(async () => {});
   }
 }
 
-:deep(.row-grey ){
+:deep(.row-grey) {
   background-color: #f0f8ff;
+}
+
+:deep(.row-failed) {
+  background-color: #fef0f0;
+  color: #f56c6c;
 }
 
 .loading-container {
@@ -485,5 +691,28 @@ onMounted(async () => {});
 .loading-text {
   font-size: 14px;
   margin-left: 10px;
+}
+
+.ip-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-icon {
+  cursor: pointer;
+  color: #409eff;
+}
+
+.copy-icon:hover {
+  color: #79bbff;
+}
+
+.rtt-slow {
+  color: #f56c6c;
+}
+
+.rtt-fast {
+  color: #67c23a;
 }
 </style>
