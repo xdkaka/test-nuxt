@@ -111,6 +111,9 @@
                 {{ formatRtt(scope.row.rtt) }}
               </span>
             </template>
+            <template v-else-if="column.prop === 'region'">
+              {{ $t(`region.${scope.row.region}`) }}
+            </template>
             <template v-else-if="column.prop === 'ttl'">
               <template v-if="scope.row.ttl">{{ scope.row.ttl }}s</template>
             </template>
@@ -180,7 +183,7 @@ import type { TableColumnCtx } from "element-plus";
 import { ref, computed, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { getRegionList, queryDNS } from "~/api/query";
-import { QueryTypeList } from "./model";
+const { columnConfig, QueryTypeList } = useQueryConfig()
 
 // MX记录类型定义
 interface DNSRecordMX {
@@ -291,8 +294,6 @@ const loading = ref<boolean>(false);
 const showTable = ref<boolean>(false);
 const dnsServerType = ref((route.query.dns_server_type as string) || 'default');
 const dnsServer = ref((route.query.dns_server as string) || '127.0.0.1');
-
-import { columnConfig } from "./model";
 
 // 根据当前记录类型获取对应的列配置
 const currentColumns = computed(() => {

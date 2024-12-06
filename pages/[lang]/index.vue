@@ -8,7 +8,7 @@
 
 
 <script lang="ts" setup>
-import { QueryTypeList } from '~/components/model'
+const { QueryTypeList } = useQueryConfig()
 import { useRoute } from 'vue-router'
 
 const route = useRoute()

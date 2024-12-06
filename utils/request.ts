@@ -1,9 +1,11 @@
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import config from '@/config/config'
+import qs from 'qs';
+import { useNuxtApp } from '#app'
 
 axios.defaults.withCredentials = true
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 5000 // 设置5秒超时
 
 interface RequestParams {
   api_url?: string;
@@ -23,19 +25,20 @@ async function request(content: RequestParams): Promise<ApiResponse> {
     params.browser_language = navigator.language;
     params.browser_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone
     
+    const { $i18n } = useNuxtApp()
+    if ($i18n?.locale?.value) {
+      params.page_language = $i18n.locale.value;
+    }
+
     let requestInfo: AxiosRequestConfig = {
       method,
       url: config.API_URL + path,
       headers: {},
-      timeout: 5000
+      timeout: 5000 // 设置5秒超时
     };    
     
     if (method.toLowerCase() === 'post') {
-      const formData = new URLSearchParams();
-      Object.entries(params).forEach(([key, value]) => {
-        formData.append(key, String(value));
-      });
-      requestInfo.data = formData;
+      requestInfo.data = qs.stringify(params);
     } else {
       requestInfo.params = params;
     }

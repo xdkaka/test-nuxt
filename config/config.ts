@@ -1,13 +1,15 @@
 interface Config {
     API_URL: string;
 }
+
 let config: Config
-const c = useRuntimeConfig()
-if (c.public.environment === 'development') {
+// const c = useRuntimeConfig()
+console.log("process.env.NODE_ENV", process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'development') {
     config = {
         API_URL: 'http://localhost:6101',
     }
-} else if (c.public.environment === 'test') {
+} else if (process.env.NODE_ENV === 'test') {
     config = {
         API_URL: 'https://api-test.lookup-dns.com'
     }
