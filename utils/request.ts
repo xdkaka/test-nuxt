@@ -1,11 +1,9 @@
 import axios from 'axios'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import config from '@/config/config'
-import qs from 'qs';
-import { useNuxtApp } from '#app'
-const { $i18n: i18n } = useNuxtApp()
 
 axios.defaults.withCredentials = true
+axios.defaults.timeout = 5000
 
 interface RequestParams {
   api_url?: string;
@@ -24,16 +22,20 @@ async function request(content: RequestParams): Promise<ApiResponse> {
     const { params = {}, method = 'post', path = '' } = content || {}
     params.browser_language = navigator.language;
     params.browser_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    params.page_language = i18n.locale.value;
-
+    
     let requestInfo: AxiosRequestConfig = {
       method,
       url: config.API_URL + path,
-      headers: {}
+      headers: {},
+      timeout: 5000
     };    
     
     if (method.toLowerCase() === 'post') {
-      requestInfo.data = qs.stringify(params);
+      const formData = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        formData.append(key, String(value));
+      });
+      requestInfo.data = formData;
     } else {
       requestInfo.params = params;
     }

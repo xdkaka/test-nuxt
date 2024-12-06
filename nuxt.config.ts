@@ -20,8 +20,8 @@ export default defineNuxtConfig({
     strategy: "prefix_except_default",
     defaultLocale: "en-US",
     locales: [
-      { code: "zh-CN", iso: "zh-CN", file: "../../locales/zh-CN.json", dir: 'auto' },
       { code: "en-US", iso: "en-US", file: "../../locales/en-US.json", dir: 'ltr' },
+      { code: "zh-CN", iso: "zh-CN", file: "../../locales/zh-CN.json", dir: 'auto' },
       { code: "ja", iso: "ja", file: "../../locales/ja.json", dir: 'auto' },
       { code: "de", iso: "de", file: "../../locales/de.json", dir: 'ltr' },
       { code: "es", iso: "es", file: "../../locales/es.json", dir: 'ltr' },

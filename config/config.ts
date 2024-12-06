@@ -1,7 +1,6 @@
 interface Config {
     API_URL: string;
 }
-
 let config: Config
 const c = useRuntimeConfig()
 if (c.public.environment === 'development') {

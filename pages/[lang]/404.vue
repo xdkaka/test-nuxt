@@ -14,9 +14,9 @@
                   style="width: 60%; height: auto"
                 />
               </div>
-              <h3 class="error-title">{{ $t('ye-mian-bu-jian-le') }}</h3>
+              <h3 class="error-title">404 {{ $t('ye-mian-bu-cun-zai') }}</h3>
               <p class="error-text">
-                {{ $t('dang-qian-ye-mian-bu-cun-zai-huo-yi-bei-shan-chu-qu-bie-de-ye-mian-kan-kan-ba') }}
+                {{ $t('dang-qian-ye-mian-yi-jing-xiu-gai-huo-shan-chu') }}
               </p>
               <nuxt-link to="/" class="error-btn"> {{ $t('fan-hui-shou-ye') }} </nuxt-link>
             </div>
@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 useHead({
-  title: `${t("ye-mian-wu-fa-zhao-dao")} - Lookup-DNS`,
+  title: `${t("ye-mian-bu-cun-zai")} - Lookup-DNS`,
 });
 </script>
 

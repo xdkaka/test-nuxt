@@ -1,14 +1,14 @@
 <template>
   <div class="dns-query">
     <header class="dns-query__header">
-      <h1>MX解析查询</h1>
+      <h1>{{ currentType.subject }}</h1>
     </header>
     <main class="dns-query__container">
       <section class="search-section">
         <div class="search-form">
           <el-input
             v-model="username"
-            placeholder="输入域名"
+            :placeholder="$t('shu-ru-yu-ming-huo-ip')"
             class="search-form__input"
             size="large"
             @keyup.enter="query"
@@ -17,8 +17,8 @@
               <el-select
                 size="large"
                 v-model="currentQueryType"
-                placeholder="选择记录类型"
-                style="width: 150px"
+                :placeholder="$t('xuan-ze-ji-lu-lei-xing')"
+                class="search-form__select"
                 @change="handleTypeChange"
               >
                 <el-option
@@ -30,6 +30,22 @@
               </el-select>
             </template>
           </el-input>
+
+          <div class="dns-server dns-server-1">
+            <el-radio-group v-model="dnsServerType" size="large" @change="handleDnsServerTypeChange">
+              <el-radio-button :label="$t('mo-ren-dns-fu-wu-qi')" value="default" />
+              <el-radio-button :label="$t('zhi-ding-dns-fu-wu-qi')" value="custom" />
+            </el-radio-group>
+            <el-input
+              v-model="dnsServer"
+              :placeholder="$t('dns-fu-wu-qi-di-zhi')"
+              size="large"
+              :disabled="dnsServerType === 'default'"
+              class="dns-server__input"
+              @keyup.enter="query"
+            ></el-input>
+          </div>
+
           <el-button
             type="primary"
             @click="query"
@@ -38,8 +54,24 @@
             :loading="loading"
           >
             <el-icon v-if="!loading"><MagicStick /></el-icon>
-            <span style="margin-left: 10px">查 询</span>
+            <span class="button-text">{{ $t('cha-xun') }}</span>
           </el-button>
+        </div>
+
+        <div class="dns-server dns-server-2">
+          <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+            <el-radio-button :label="$t('mo-ren-dns-fu-wu-qi')" value="default" />
+            <el-radio-button :label="$t('zhi-ding-dns-fu-wu-qi')" value="custom" />
+          </el-radio-group>
+          <el-input
+            v-model="dnsServer"
+            :placeholder="$t('dns-fu-wu-qi-di-zhi')"
+            size="mini"
+            :disabled="dnsServerType === 'default'"
+            class="dns-server__input"
+            style="width: 200px"
+            @keyup.enter="query"
+          ></el-input>
         </div>
       </section>
 
@@ -50,7 +82,6 @@
         :row-class-name="tableRowClassName"
         :fit="true"
       >
-        <!-- :border="true" -->
         <el-table-column
           v-for="column in currentColumns"
           :key="column.prop"
@@ -60,7 +91,7 @@
         >
           <template #default="scope">
             <template v-if="column.prop === 'ip'">
-              <div class="ip-cell" v-if="scope.row.ip">
+              <div class="ip-cell" v-if="scope.row.ip && scope.row.ip !== '-'">
                 <div>{{ scope.row.ip }}</div>
                 <el-icon
                   v-if="!scope.row.failed"
@@ -75,7 +106,7 @@
               </div>
             </template>
             <template v-else-if="column.prop === 'rtt'">
-              <span v-if="scope.row.failed">查询失败</span>
+              <span v-if="scope.row.failed">{{ $t('cha-xun-shi-bai') }}</span>
               <span v-else :class="getRttClass(scope.row.rtt)">
                 {{ formatRtt(scope.row.rtt) }}
               </span>
@@ -88,7 +119,7 @@
                 <div v-for="(item, index) in scope.row.txt" :key="index">
                   {{ item }}
                   <el-icon
-                    v-if="item && item !== '' && !scope.row.failed"
+                    v-if="item && item !== ''&& item !== '-' && !scope.row.failed"
                     class="copy-icon"
                     @click="copyToClipboard(item)"
                   >
@@ -108,6 +139,7 @@
                   v-if="
                     scope.row[column.prop] &&
                     scope.row[column.prop] !== '' &&
+                    scope.row[column.prop] !== '-' &&
                     !scope.row.failed
                   "
                   class="copy-icon"
@@ -128,20 +160,15 @@
 
       <div v-if="loading" class="loading-container">
         <el-icon class="is-loading"><Loading /></el-icon>
-        <span class="loading-text">加载中...</span>
+        <span class="loading-text">{{ $t('jia-zai-zhong') }}...</span>
       </div>
 
       <section v-if="!showTable" class="tips-section">
         <h2 class="tips-section__title">{{ $t("ti-shi") }}</h2>
-        <div class="tips-section__content">
-          <p>
-            {{
-              $t(
-                "pinmx-fei-lin-shi-you-xiang-zhu-yi-chuang-jian-hou-bao-cun-mi-ma-fou-ze-you-xiang-wu-fa-zhao-hui-huo-zhe-zhu-ce-zhang-hao-chuang-jian-he-zhang-hao-jin-hang-bang-ding"
-              )
-            }}
-          </p>
-        </div>
+        <div
+          class="tips-section__content"
+          v-html="currentType.htmlContent"
+        ></div>
       </section>
     </main>
   </div>
@@ -262,6 +289,8 @@ const router = useRouter();
 const route = useRoute();
 const loading = ref<boolean>(false);
 const showTable = ref<boolean>(false);
+const dnsServerType = ref((route.query.dns_server_type as string) || 'default');
+const dnsServer = ref((route.query.dns_server as string) || '127.0.0.1');
 
 import { columnConfig } from "./model";
 
@@ -309,11 +338,19 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 const { t } = useI18n();
 
 // 根据路由设置当前查询类型
-const currentPath = route.path.slice(1); // 去掉开头的/
+const currentPath = route.path.slice(1);
 const matchedType = QueryTypeList.value.find(
   (type) => type.page.slice(1) === currentPath
 );
 let currentQueryType = ref<string>(matchedType ? matchedType.value : "a");
+
+// 获取当前类型的完整信息
+const currentType = computed(() => {
+  return (
+    QueryTypeList.value.find((type) => type.value === currentQueryType.value) ||
+    QueryTypeList.value[0]
+  );
+});
 
 // 从路由参数初始化输入框值
 const username = ref<string>((route.query.host as string) || "");
@@ -330,16 +367,33 @@ const handleTypeChange = (value: string) => {
       path: selectedType.page,
       query: {
         host: username.value,
+        dns_server_type: dnsServerType.value,
+        dns_server: dnsServer.value
       },
     });
     username.value = (route.query.host as string) || "";
   }
 };
 
+// 处理DNS服务器类型变更
+const handleDnsServerTypeChange = (value: string) => {
+  if (value === 'default') {
+    dnsServer.value = '127.0.0.1';
+  }
+  // 更新URL参数
+  router.push({
+    query: {
+      ...route.query,
+      dns_server_type: value,
+      dns_server: dnsServer.value
+    }
+  });
+};
+
 // 复制到剪贴板
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text).then(() => {
-    ElMessage.success("已复制到剪贴板");
+    ElMessage.success(t('yi-fu-zhi-dao-jian-tie-ban') +": "+text);
   });
 };
 
@@ -368,15 +422,15 @@ const renderList = (list: any[], regionKey: string) => {
   if (!list || list.length === 0) {
     tableData.value.push({
       region: regionKey,
-      value: "无数据",
+      value: "-",
       priority: "",
       ttl: "",
-      ip: "无数据",
+      ip: "-",
       location: "",
       rtt: "",
       isGrey: isGrey,
       rowSpan: 1,
-      host: "",
+      host: "-",
     });
     lastIsGrey.value = isGrey;
     return;
@@ -505,7 +559,12 @@ const renderList = (list: any[], regionKey: string) => {
 
 const query = async () => {
   if (!username.value) {
-    ElMessage({ message: "请输入查询的内容", type: "warning" });
+    ElMessage({ message: t('qing-shu-ru-cha-xun-de-nei-rong'), type: "warning" });
+    return;
+  }
+
+  if (dnsServerType.value === 'custom' && !dnsServer.value) {
+    ElMessage({ message: t('qing-shu-ru-dns-fu-wu-qi-di-zhi'), type: "warning" });
     return;
   }
 
@@ -514,6 +573,8 @@ const query = async () => {
     query: {
       ...route.query,
       host: username.value,
+      dns_server_type: dnsServerType.value,
+      dns_server: dnsServer.value
     },
   });
 
@@ -526,11 +587,12 @@ const query = async () => {
     const response = await getRegionList({
       query_type: currentQueryType.value.toLowerCase(),
       host: username.value,
+      dns_server: dnsServerType.value === 'custom' ? dnsServer.value : "127.0.0.1"
     });
     const { data = {} } = response || {};
     regionList = data.list || [];
   } catch (err: any) {
-    const errMsg = err?.msg || String(err) || "失败";
+    const errMsg = err?.msg || String(err) || t('shi-bai');
     ElMessage({ message: errMsg, type: "error", plain: true });
     loading.value = false;
     return;
@@ -543,6 +605,7 @@ const query = async () => {
           region_id: region.id,
           query_type: currentQueryType.value.toLowerCase(),
           host: username.value,
+          dns_server: dnsServerType.value === 'custom' ? dnsServer.value : "127.0.0.1"
         });
         const { data = {} } = response || {};
         const list = data.list || [];
@@ -613,7 +676,7 @@ const query = async () => {
 }
 
 .search-form__select {
-  width: 120px;
+  width: 150px;
 }
 
 /* 移除相邻元素的边框重叠 */
@@ -629,6 +692,36 @@ const query = async () => {
 .search-form__button {
   margin-left: 10px;
   min-width: 200px;
+}
+
+.button-text {
+  margin-left: 10px;
+}
+
+/* DNS服务器选择区域 */
+.dns-server {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dns-server__input {
+  /* width: 150px; */
+}
+
+.dns-server__input :deep(.el-input__wrapper) {
+  border-radius: 4px;
+}
+
+/* 响应式显示控制 */
+.dns-server-1 {
+  display: none;
+}
+
+.dns-server-2 {
+  display: flex; align-items: center; gap: 10px;
 }
 
 /* 提示区域样式 */
@@ -666,8 +759,16 @@ const query = async () => {
   .search-form__input,
   .search-form__select,
   .search-form__button {
-    width: 100%;
+    /* width: 100%; */
     margin-left: 0;
+  }
+
+  .dns-server-1 {
+    display: flex;
+  }
+
+  .dns-server-2 {
+    display: none;
   }
 }
 

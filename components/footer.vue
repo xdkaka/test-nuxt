@@ -3,7 +3,7 @@
     <div class="tools" :class="{ 'black-bg': black === 1 }">
       <div class="tools-inner">
         <div class="tools-column">
-          <h3>域名查询</h3>
+          <h3>{{ $t('yu-ming-cha-xun') }}</h3>
           <a v-for="item in dnsQueries" 
              :key="item.value" 
              :href="item.page" 
@@ -12,7 +12,7 @@
           </a>
         </div>
         <div class="tools-column">
-          <h3>IP查询</h3>
+          <h3>{{ $t('ip-cha-xun') }}</h3>
           <a v-for="item in ipQueries" 
              :key="item.value" 
              :href="item.page" 
@@ -21,7 +21,7 @@
           </a>
         </div>
         <div class="tools-column">
-          <h3>Host查询</h3>
+          <h3>{{ $t('host-cha-xun') }}</h3>
           <a v-for="item in hostQueries" 
              :key="item.value" 
              :href="item.page" 
@@ -32,7 +32,7 @@
       </div>
     </div>
     <footer class="footer" :class="{ 'black-bg': black === 1 }">
-      <p>Copyright © 2024 GetMX LLC. All rights reserved.</p>
+      <p>Copyright © {{ currentYear }} GetMX LLC. All rights reserved.</p>
     </footer>
   </div>
 </template>
@@ -48,6 +48,8 @@ defineProps({
   },
 });
 
+const currentYear = computed(() => new Date().getFullYear());
+
 const dnsQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "domain"));
 const ipQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "ip"));
 const hostQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "host"));
@@ -58,18 +60,20 @@ const hostQueries = computed(() => QueryTypeList.value.filter(item => item.catog
   background-color: #1e2331;
 }
 .tools {
- 
   color: #fff;
-  /* padding: 40px 0; */
+  padding: 20px;
 }
 .tools-inner {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 .tools-column {
-  flex: 1;
+  text-align: center;
+  padding: 10px;
 }
 .tools h3 {
   font-size: 18px;
@@ -95,5 +99,30 @@ const hostQueries = computed(() => QueryTypeList.value.filter(item => item.catog
 .footer p {
   margin: 5px 0;
   font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .tools-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .tools-column {
+    padding: 5px;
+  }
+  .tools h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .tools a {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tools-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
 }
 </style>
