@@ -3,43 +3,47 @@
     <div class="tools" :class="{ 'black-bg': black === 1 }">
       <div class="tools-inner">
         <div class="tools-column">
-          <h3>{{ $t('yu-ming-cha-xun') }}</h3>
-          <a v-for="item in dnsQueries" 
-             :key="item.value" 
-             :href="item.page" 
-             target="_blank">
+          <h3>{{ t("yu-ming-cha-xun") }}</h3>
+          <NuxtLinkLocale
+            v-for="item in dnsQueries"
+            :key="item.value"
+            :to="localePath(item.page)"
+          >
             {{ item.label }}
-          </a>
+          </NuxtLinkLocale>
         </div>
         <div class="tools-column">
-          <h3>{{ $t('ip-cha-xun') }}</h3>
-          <a v-for="item in ipQueries" 
-             :key="item.value" 
-             :href="item.page" 
-             target="_blank">
+          <h3>{{ t("ip-cha-xun") }}</h3>
+          <NuxtLinkLocale
+            v-for="item in ipQueries"
+            :key="item.value"
+            :to="localePath(item.page)"
+          >
             {{ item.label }}
-          </a>
+          </NuxtLinkLocale>
         </div>
         <div class="tools-column">
-          <h3>{{ $t('host-cha-xun') }}</h3>
-          <a v-for="item in hostQueries" 
-             :key="item.value" 
-             :href="item.page" 
-             target="_blank">
+          <h3>{{ t("host-cha-xun") }}</h3>
+          <NuxtLinkLocale
+            v-for="item in hostQueries"
+            :key="item.value"
+            :to="localePath(item.page)"
+          >
             {{ item.label }}
-          </a>
+          </NuxtLinkLocale>
         </div>
       </div>
     </div>
     <footer class="footer" :class="{ 'black-bg': black === 1 }">
       <p>Copyright © {{ currentYear }} GetMX LLC. All rights reserved.</p>
     </footer>
+    <WhatsappButton />
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
-const { QueryTypeList } = useQueryConfig()
-
+import { computed } from "vue";
+const { QueryTypeList } = useQueryConfig();
+const { t } = useI18n();
 const localePath = useLocalePath();
 defineProps({
   black: {
@@ -50,13 +54,19 @@ defineProps({
 
 const currentYear = computed(() => new Date().getFullYear());
 
-const dnsQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "domain"));
-const ipQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "ip"));
-const hostQueries = computed(() => QueryTypeList.value.filter(item => item.catogory === "host"));
+const dnsQueries = computed(() =>
+  QueryTypeList.value.filter((item) => item.catogory === "domain")
+);
+const ipQueries = computed(() =>
+  QueryTypeList.value.filter((item) => item.catogory === "ip")
+);
+const hostQueries = computed(() =>
+  QueryTypeList.value.filter((item) => item.catogory === "host")
+);
 </script>
 
 <style scoped>
-.black-bg{
+.black-bg {
   background-color: #1e2331;
 }
 .tools {

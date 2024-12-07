@@ -8,10 +8,10 @@
   "yu-ming-cha-xun": "Domain Lookup",
   "ip-cha-xun": "IP Lookup",
   "host-cha-xun": "Host Lookup",
-  "shu-ru-yu-ming-huo-ip": "Enter domain or IP",
+  "shu-ru-yu-ming-huo-ip": "Enter Domain or IP",
   "xuan-ze-ji-lu-lei-xing": "Select record type",
-  "mo-ren-dns-fu-wu-qi": "Default DNS Server",
-  "zhi-ding-dns-fu-wu-qi": "Custom DNS Server",
+  "mo-ren-dns-fu-wu-qi": "Default DNS",
+  "zhi-ding-dns-fu-wu-qi": "Custom DNS",
   "cha-xun": "Lookup",
   "dns-fu-wu-qi-di-zhi": "DNS Server Address",
   "cha-xun-shi-bai": "Failed",
@@ -27,7 +27,7 @@
   "mx-jie-xi": "MX Resolution",
   "a-jie-xi": "A Resolution",
   "cname-jie-xi": "CNAME Resolution",
-  "ns-jie-xi": "NS Resolution", 
+  "ns-jie-xi": "NS Resolution",
   "txt-jie-xi": "TXT Resolution",
   "ptr-fan-xiang-jie-xi": "PTR Reverse Resolution",
   "ping-jian-ce": "PING Test",
@@ -65,5 +65,6 @@
   "ping-ji-lu-jian-ce-wang-luo-lian-tong-xing-ce-shi-gong-ju": "PING Test - Network Connectivity Testing Tool",
   "ping-jian-ce-wang-luo-yan-chi-lian-tong-xing-ce-shi-xiang-ying-shi-jian": "PING Test, Network Latency, Connectivity Test, Response Time",
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multi-region PING testing tool to check server network connectivity performance. Shows response times from different regions to help diagnose network access quality issues",
-  "ping-jie-xi-html-content": "<h4>What is PING Testing?</h4><p>PING is a network diagnostic tool used to test host reachability and network latency. It works by sending ICMP echo requests to test network connectivity.</p><h4>Purpose of PING Testing</h4><p>1. Test network connectivity<br>2. Check network latency<br>3. Evaluate network quality<br>4. Troubleshoot network issues</p><h4>How to Use the PING Test Tool?</h4><p>1. Enter domain or IP address<br>2. Select PING test<br>3. View multi-region test results:<br>- Response time<br>- Packet loss rate<br>- Network status</p><h4>Test Metrics Explained</h4><p>1. Response time (RTT): Lower is better<br>2. Packet loss: Should be 0%<br>3. Network stability</p><h4>Use Cases</h4><p>1. Server performance monitoring<br>2. CDN node testing<br>3. Network troubleshooting<br>4. Cross-region access quality assessment</p>"
+  "ping-jie-xi-html-content": "<h4>What is PING Testing?</h4><p>PING is a network diagnostic tool used to test host reachability and network latency. It works by sending ICMP echo requests to test network connectivity.</p><h4>Purpose of PING Testing</h4><p>1. Test network connectivity<br>2. Check network latency<br>3. Evaluate network quality<br>4. Troubleshoot network issues</p><h4>How to Use the PING Test Tool?</h4><p>1. Enter Domain or IP address<br>2. Select PING test<br>3. View multi-region test results:<br>- Response time<br>- Packet loss rate<br>- Network status</p><h4>Test Metrics Explained</h4><p>1. Response time (RTT): Lower is better<br>2. Packet loss: Should be 0%<br>3. Network stability</p><h4>Use Cases</h4><p>1. Server performance monitoring<br>2. CDN node testing<br>3. Network troubleshooting<br>4. Cross-region access quality assessment</p>",
+  "ting-zhi": "Stop"
 }

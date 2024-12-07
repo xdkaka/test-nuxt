@@ -8,7 +8,7 @@
         <div class="search-form">
           <el-input
             v-model="username"
-            :placeholder="$t('shu-ru-yu-ming-huo-ip')"
+            :placeholder="t('shu-ru-yu-ming-huo-ip')"
             class="search-form__input"
             size="large"
             @keyup.enter="query"
@@ -17,7 +17,7 @@
               <el-select
                 size="large"
                 v-model="currentQueryType"
-                :placeholder="$t('xuan-ze-ji-lu-lei-xing')"
+                :placeholder="t('xuan-ze-ji-lu-lei-xing')"
                 class="search-form__select"
                 @change="handleTypeChange"
               >
@@ -32,14 +32,14 @@
           </el-input>
 
           <div class="dns-server dns-server-1">
-            <el-radio-group v-model="dnsServerType" size="large" @change="handleDnsServerTypeChange">
-              <el-radio-button :label="$t('mo-ren-dns-fu-wu-qi')" value="default" />
-              <el-radio-button :label="$t('zhi-ding-dns-fu-wu-qi')" value="custom" />
+            <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+              <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
+              <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
             </el-radio-group>
             <el-input
               v-model="dnsServer"
-              :placeholder="$t('dns-fu-wu-qi-di-zhi')"
-              size="large"
+              :placeholder="t('dns-fu-wu-qi-di-zhi')"
+              size="mini"
               :disabled="dnsServerType === 'default'"
               class="dns-server__input"
               @keyup.enter="query"
@@ -52,20 +52,32 @@
             class="search-form__button"
             size="large"
             :loading="loading"
+            :disabled="loading"
           >
             <el-icon v-if="!loading"><MagicStick /></el-icon>
-            <span class="button-text">{{ $t('cha-xun') }}</span>
+            <span class="button-text">{{ t('cha-xun') }}</span>
+          </el-button>
+
+          <el-button
+            type="danger"
+            @click="stopQuery"
+            class="search-form__button"
+            size="large"
+            v-if="loading"
+          >
+            <el-icon><CircleClose /></el-icon>
+            <span class="button-text">{{ t('ting-zhi') }}</span>
           </el-button>
         </div>
 
         <div class="dns-server dns-server-2">
           <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
-            <el-radio-button :label="$t('mo-ren-dns-fu-wu-qi')" value="default" />
-            <el-radio-button :label="$t('zhi-ding-dns-fu-wu-qi')" value="custom" />
+            <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
+            <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
           </el-radio-group>
           <el-input
             v-model="dnsServer"
-            :placeholder="$t('dns-fu-wu-qi-di-zhi')"
+            :placeholder="t('dns-fu-wu-qi-di-zhi')"
             size="mini"
             :disabled="dnsServerType === 'default'"
             class="dns-server__input"
@@ -106,13 +118,13 @@
               </div>
             </template>
             <template v-else-if="column.prop === 'rtt'">
-              <span v-if="scope.row.failed">{{ $t('cha-xun-shi-bai') }}</span>
+              <span v-if="scope.row.failed">{{ t('cha-xun-shi-bai') }}</span>
               <span v-else :class="getRttClass(scope.row.rtt)">
                 {{ formatRtt(scope.row.rtt) }}
               </span>
             </template>
             <template v-else-if="column.prop === 'region'">
-              {{ $t(`region.${scope.row.region}`) }}
+              {{ t(`region.${scope.row.region}`) }}
             </template>
             <template v-else-if="column.prop === 'ttl'">
               <template v-if="scope.row.ttl">{{ scope.row.ttl }}s</template>
@@ -163,11 +175,11 @@
 
       <div v-if="loading" class="loading-container">
         <el-icon class="is-loading"><Loading /></el-icon>
-        <span class="loading-text">{{ $t('jia-zai-zhong') }}...</span>
+        <span class="loading-text">{{ t('jia-zai-zhong') }}...</span>
       </div>
 
       <section v-if="!showTable" class="tips-section">
-        <h2 class="tips-section__title">{{ $t("ti-shi") }}</h2>
+        <h2 class="tips-section__title">{{ t("ti-shi") }}</h2>
         <div
           class="tips-section__content"
           v-html="currentType.htmlContent"
@@ -178,9 +190,9 @@
 </template>
 
 <script lang="ts" setup>
-import { Loading, MagicStick, DocumentCopy } from "@element-plus/icons-vue";
+import { Loading, MagicStick, DocumentCopy, CircleClose } from "@element-plus/icons-vue";
 import type { TableColumnCtx } from "element-plus";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { getRegionList, queryDNS } from "~/api/query";
 const { columnConfig, QueryTypeList } = useQueryConfig()
@@ -294,6 +306,7 @@ const loading = ref<boolean>(false);
 const showTable = ref<boolean>(false);
 const dnsServerType = ref((route.query.dns_server_type as string) || 'default');
 const dnsServer = ref((route.query.dns_server as string) || '127.0.0.1');
+const shouldStop = ref<boolean>(false);
 
 // 根据当前记录类型获取对应的列配置
 const currentColumns = computed(() => {
@@ -347,10 +360,12 @@ let currentQueryType = ref<string>(matchedType ? matchedType.value : "a");
 
 // 获取当前类型的完整信息
 const currentType = computed(() => {
-  return (
-    QueryTypeList.value.find((type) => type.value === currentQueryType.value) ||
-    QueryTypeList.value[0]
-  );
+  const type = QueryTypeList.value.find((type) => type.value === currentQueryType.value) || QueryTypeList.value[0];
+  // 确保subject使用翻译函数
+  return {
+    ...type,
+    subject: t(type.subject)
+  };
 });
 
 // 从路由参数初始化输入框值
@@ -364,15 +379,20 @@ const lastIsGrey = ref<boolean>(false);
 const handleTypeChange = (value: string) => {
   const selectedType = QueryTypeList.value.find((item) => item.value === value);
   if (selectedType) {
-    router.push({
+    // 在路由跳转前重置相关状态
+    showTable.value = false;
+    tableData.value = [];
+    
+    // 使用 localePath 处理多语言路由
+    const localePath = useLocalePath();
+    router.push(localePath({
       path: selectedType.page,
       query: {
         host: username.value,
         dns_server_type: dnsServerType.value,
         dns_server: dnsServer.value
       },
-    });
-    username.value = (route.query.host as string) || "";
+    }));
   }
 };
 
@@ -416,6 +436,8 @@ const getRttClass = (rtt: string) => {
 
 // 渲染list数据
 const renderList = (list: any[], regionKey: string) => {
+  if (shouldStop.value) return;
+  
   // 从上次的状态开始交替
   let isGrey = !lastIsGrey.value;
 
@@ -555,7 +577,16 @@ const renderList = (list: any[], regionKey: string) => {
   // 记录这次renderList的isGrey状态
   lastIsGrey.value = isGrey;
 
-  tableData.value.push(...newRows);
+  if (!shouldStop.value) {
+    tableData.value.push(...newRows);
+  }
+};
+
+// 停止查询
+const stopQuery = () => {
+  shouldStop.value = true;
+  loading.value = false;
+  showTable.value = true;
 };
 
 const query = async () => {
@@ -582,6 +613,7 @@ const query = async () => {
   loading.value = true;
   tableData.value = []; // 清空之前的数据
   showTable.value = true;
+  shouldStop.value = false;
 
   let regionList: any[] = [];
   try {
@@ -601,6 +633,8 @@ const query = async () => {
 
   try {
     for (const region of regionList) {
+      if (shouldStop.value) break;
+      
       try {
         const response = await queryDNS({
           region_id: region.id,
@@ -613,24 +647,41 @@ const query = async () => {
         renderList(list, region.region_key);
       } catch (err: any) {
         // 查询失败时添加失败行
-        tableData.value.push({
-          region: region.region_key,
-          value: "",
-          priority: "",
-          ttl: "",
-          ip: "",
-          location: "",
-          rtt: "",
-          isGrey: false,
-          failed: true,
-          rowSpan: 1,
-        });
+        if (!shouldStop.value) {
+          tableData.value.push({
+            region: region.region_key,
+            value: "",
+            priority: "",
+            ttl: "",
+            ip: "",
+            location: "",
+            rtt: "",
+            isGrey: false,
+            failed: true,
+            rowSpan: 1,
+          });
+        }
       }
     }
   } finally {
     loading.value = false;
   }
 };
+
+// 添加路由监听
+watch(
+  () => route.path,
+  () => {
+    const currentPath = route.path.slice(1);
+    const matchedType = QueryTypeList.value.find(
+      (type) => type.page.slice(1) === currentPath
+    );
+    if (matchedType) {
+      currentQueryType.value = matchedType.value;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style scoped>

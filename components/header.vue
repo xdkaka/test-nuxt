@@ -16,11 +16,6 @@
             class="logo"
           />
         </NuxtLink>
-        <div class="hamburger" @click="toggleMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
       <div class="nav-right" :class="{ 'show-menu': isMenuOpen }">
         <a href="https://getmx.com" class="nav-link" target="_blank"
@@ -29,7 +24,7 @@
         <a href="https://pinmx.com" class="nav-link" target="_blank"
           >Generate-Email</a
         >
-        <div class="dropdown">
+        <div class="dropdown desktop-dropdown">
           <button class="dropbtn">Language ▼</button>
           <div class="dropdown-content">
             <NuxtLink
@@ -39,6 +34,24 @@
               >{{ item.title }}</NuxtLink
             >
           </div>
+        </div>
+      </div>
+      <div class="mobile-controls">
+        <div class="dropdown mobile-dropdown">
+          <button class="dropbtn">Language ▼</button>
+          <div class="dropdown-content">
+            <NuxtLink
+              :to="switchLocalePath(item.language)"
+              v-for="item in languageList"
+              :key="item.language"
+              >{{ item.title }}</NuxtLink
+            >
+          </div>
+        </div>
+        <div class="hamburger" @click="toggleMenu">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </div>
     </div>
@@ -203,6 +216,10 @@ onBeforeUnmount(() => {
   color: #ff4800;
 }
 
+.mobile-controls {
+  display: none;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -216,6 +233,10 @@ onBeforeUnmount(() => {
   background-color: currentColor;
   margin: 3px 0;
   transition: 0.4s;
+}
+
+.mobile-dropdown {
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -239,40 +260,57 @@ onBeforeUnmount(() => {
     height: 40px;
   }
 
+  .mobile-controls {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
   .hamburger {
     display: flex;
+    margin-left: 20px;
   }
 
   .nav-right {
     display: none;
     width: 100%;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
     background-color: transparent;
   }
+  
   .nav-right.show-menu {
     display: flex;
   }
 
-  .nav-link,
-  .dropdown {
+  .nav-link {
     margin: 5px 10px;
     font-size: 18px;
     line-height: 1.5;
   }
 
-  .dropdown-content {
+  .desktop-dropdown {
+    display: none;
+  }
+
+  .mobile-dropdown {
+    display: block;
+  }
+
+  .mobile-dropdown .dropdown-content {
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    right: 0;
+    left: auto;
+    width: 170px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   }
 
-  .dropdown-content a {
+  .mobile-dropdown .dropdown-content a {
     padding: 10px;
     text-align: center;
   }
