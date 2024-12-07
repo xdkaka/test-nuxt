@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "複数地域PING検査ツール。サーバーのネットワーク接続性能をテストし、異なる地域の応答時間を表示。ネットワークアクセス品質の問題診断をサポートします",
   "ping-jie-xi-html-content": "<h4>PING検査とは？</h4><p>PINGは、ネットワーク診断ツールで、対象ホストへの到達可能性とネットワーク遅延を測定するために使用されます。ICMPエコーリクエストを送信してネットワーク接続性をテストします。</p><h4>PING検査の役割</h4><p>1. ネットワーク接続性のテスト<br>2. ネットワーク遅延の検出<br>3. ネットワーク品質の評価<br>4. ネットワークトラブルシューティング</p><h4>PING検査ツールの使い方</h4><p>1. ドメイン名またはIPアドレスを入力<br>2. PING検査を選択<br>3. 複数地域の検査結果を確認：<br>- 応答時間<br>- パケットロス率<br>- ネットワーク状態</p><h4>検査指標の説明</h4><p>1. 応答時間（RTT）：低いほど良い<br>2. パケットロス率：正常は0%<br>3. ネットワーク安定性</p><h4>使用シーン</h4><p>1. サーバーパフォーマンスモニタリング<br>2. CDNノードテスト<br>3. ネットワークトラブル診断<br>4. 地域間アクセス品質評価</p>",
   "region.cn_bj": "中国-北京",
-  "ting-zhi": "停止"
+  "ting-zhi": "停止",
+  "region.ap-cn-bj": "アジア太平洋-中国-北京",
+  "region.ap-cn-hz": "アジア太平洋-中国-杭州", 
+  "region.na-us-ca": "北米-アメリカ-カリフォルニア",
+  "region.na-us-wa": "北米-アメリカ-ワシントン",
+  "region.na-us-ny": "北米-アメリカ-ニューヨーク",
+  "region.ap-sg-sg": "アジア太平洋-シンガポール-シンガポール",
+  "region.ap-jp-tk": "アジア太平洋-日本-東京",
+  "region.ap-au-sd": "アジア太平洋-オーストラリア-シドニー",
+  "region.af-za-ct": "アフリカ-南アフリカ-ケープタウン",
+  "region.me-bh-mn": "中東-バーレーン-マナーマ",
+  "region.eu-uk-ld": "ヨーロッパ-イギリス-ロンドン",
+  "region.eu-ru-mw": "ヨーロッパ-ロシア-モスクワ",
+  "region.ap-cn-hk": "アジア太平洋-中国-香港"
 }

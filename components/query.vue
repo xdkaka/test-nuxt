@@ -351,12 +351,26 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 // 响应式变量定义
 const { t } = useI18n();
 
+// 获取配置的语言列表
+const { availableLocales } = useI18n();
+
+// 修改路由识别逻辑
+const currentPath = computed(() => {
+  const pathSegments = route.path.split('/').filter(Boolean);
+  
+  // 添加类型断言确保语言代码匹配
+  const firstSegment = pathSegments[0] as typeof availableLocales[number];
+  return pathSegments.length > 1 && availableLocales.includes(firstSegment)
+    ? pathSegments[1]
+    : pathSegments[0];
+});
+
 // 根据路由设置当前查询类型
-const currentPath = route.path.slice(1);
-const matchedType = QueryTypeList.value.find(
-  (type) => type.page.slice(1) === currentPath
+const matchedType = computed(() => 
+  QueryTypeList.value.find(type => type.page.slice(1) === currentPath.value)
 );
-let currentQueryType = ref<string>(matchedType ? matchedType.value : "a");
+
+let currentQueryType = ref<string>(matchedType.value ? matchedType.value.value : "a");
 
 // 获取当前类型的完整信息
 const currentType = computed(() => {
@@ -441,7 +455,7 @@ const renderList = (list: any[], regionKey: string) => {
   // 从上次的状态开始交替
   let isGrey = !lastIsGrey.value;
 
-  // 如果list为空，添加一条无数据记录
+  // 如果list为空，添加一条无数据记���
   if (!list || list.length === 0) {
     tableData.value.push({
       region: regionKey,
@@ -668,16 +682,15 @@ const query = async () => {
   }
 };
 
-// 添加路由监听
+// 修改路由监听
 watch(
-  () => route.path,
+  currentPath,
   () => {
-    const currentPath = route.path.slice(1);
-    const matchedType = QueryTypeList.value.find(
-      (type) => type.page.slice(1) === currentPath
+    const matched = QueryTypeList.value.find(
+      (type) => type.page.slice(1) === currentPath.value
     );
-    if (matchedType) {
-      currentQueryType.value = matchedType.value;
+    if (matched) {
+      currentQueryType.value = matched.value;
     }
   },
   { immediate: true }
@@ -700,7 +713,7 @@ watch(
 
 /* 容器样式 */
 .dns-query__container {
-  max-width: 1024px;
+  max-width: 1300px;
   margin: 2.5rem auto;
   padding: 2.5rem;
   background-color: var(--el-bg-color);

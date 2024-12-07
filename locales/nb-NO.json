@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multiregionalt PING-testverktøy for testing av servernettverkstilkobling, viser responstider fra ulike regioner for å diagnostisere nettverkskvalitetsproblemer",
   "ping-jie-xi-html-content": "<h4>Hva er PING-testing?</h4><p>PING er et nettverksdiagnostikkverktøy som brukes for å teste tilgjengelighet og nettverksforsinkelse til en målvert. Det sender ICMP-ekkoforespørsler for å teste nettverkstilkobling.</p><h4>PING-testens formål</h4><p>1. Teste nettverkstilkobling<br>2. Måle nettverksforsinkelse<br>3. Evaluere nettverkskvalitet<br>4. Feilsøke nettverksproblemer</p><h4>Hvordan bruke PING-testverktøyet?</h4><p>1. Skriv inn domene eller IP-adresse<br>2. Velg PING-test<br>3. Se multiregionale testresultater:<br>- Responstid<br>- Pakketap<br>- Nettverksstatus</p><h4>Testindikatorer</h4><p>1. Responstid (RTT): Lavere er bedre<br>2. Pakketap: Bør være 0%<br>3. Nettverksstabilitet</p><h4>Bruksområder</h4><p>1. Serverytelsesovervåking<br>2. CDN-nodetest<br>3. Nettverksfeildiagnose<br>4. Evaluering av tverregional tilgangskvalitet</p>",
   "region.cn_bj": "Kina-Beijing",
-  "ting-zhi": "stoppe"
+  "ting-zhi": "stoppe",
+  "region.ap-cn-bj": "Asia-Stillehavet-Kina-Beijing",
+  "region.ap-cn-hz": "Asia-Stillehavet-Kina-Hangzhou",
+  "region.na-us-ca": "Nord-Amerika-USA-California",
+  "region.na-us-wa": "Nord-Amerika-USA-Washington",
+  "region.na-us-ny": "Nord-Amerika-USA-New York", 
+  "region.ap-sg-sg": "Asia-Stillehavet-Singapore-Singapore",
+  "region.ap-jp-tk": "Asia-Stillehavet-Japan-Tokyo",
+  "region.ap-au-sd": "Asia-Stillehavet-Australia-Sydney",
+  "region.af-za-ct": "Afrika-Sør-Afrika-Cape Town",
+  "region.me-bh-mn": "Midtøsten-Bahrain-Manama",
+  "region.eu-uk-ld": "Europa-Storbritannia-London",
+  "region.eu-ru-mw": "Europa-Russland-Moskva",
+  "region.ap-cn-hk": "Asia-Stillehavet-Kina-Hong Kong"
 }

@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multi-regio PING test tool. Test server netwerk connectiviteit, toon responstijden per regio en diagnosticeer netwerk kwaliteitsproblemen.",
   "ping-jie-xi-html-content": "<h4>Wat is een PING Test?</h4><p>PING is een netwerk diagnose tool om te testen of een host bereikbaar is en wat de netwerk latency is. Het gebruikt ICMP echo requests om connectiviteit te testen.</p><h4>Doel van PING Tests</h4><p>1. Test netwerk connectiviteit<br>2. Meet netwerk latency<br>3. Evalueer netwerk kwaliteit<br>4. Los netwerk problemen op</p><h4>Hoe gebruikt u de PING Test Tool?</h4><p>1. Voer domein of IP-adres in<br>2. Selecteer PING test<br>3. Bekijk multi-regio resultaten:<br>- Responstijd<br>- Packet loss<br>- Netwerk status</p><h4>Test Metrics</h4><p>1. Responstijd (RTT): lager is beter<br>2. Packet loss: normaal 0%<br>3. Netwerk stabiliteit</p><h4>Toepassingen</h4><p>1. Server performance monitoring<br>2. CDN node tests<br>3. Netwerk probleem diagnose<br>4. Cross-regio toegang evaluatie</p>",
   "region.cn_bj": "China-Beijing",
-  "ting-zhi": "stop"
+  "ting-zhi": "stop",
+  "region.ap-cn-bj": "Azië Pacific-China-Beijing",
+  "region.ap-cn-hz": "Azië Pacific-China-Hangzhou",
+  "region.na-us-ca": "Noord Amerika-VS-Californië",
+  "region.na-us-wa": "Noord Amerika-VS-Washington",
+  "region.na-us-ny": "Noord Amerika-VS-New York", 
+  "region.ap-sg-sg": "Azië Pacific-Singapore-Singapore",
+  "region.ap-jp-tk": "Azië Pacific-Japan-Tokyo",
+  "region.ap-au-sd": "Azië Pacific-Australië-Sydney",
+  "region.af-za-ct": "Afrika-Zuid Afrika-Kaapstad",
+  "region.me-bh-mn": "Midden Oosten-Bahrein-Manama",
+  "region.eu-uk-ld": "Europa-VK-Londen",
+  "region.eu-ru-mw": "Europa-Rusland-Moskou",
+  "region.ap-cn-hk": "Azië Pacific-China-Hong Kong"
 }

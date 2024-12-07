@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "多地区PING检测工具,测试服务器网络连通性能,显示不同地区响应时间,帮助诊断网络访问质量问题",
   "ping-jie-xi-html-content": "<h4>什么是PING检测?</h4><p>PING是一种网络诊断工具,用于测试目标主机是否可达以及网络延迟情况。它通过发送ICMP回显请求来测试网络连通性。</p><h4>PING检测的作用</h4><p>1. 测试网络连通性<br>2. 检测网络延迟<br>3. 评估网络质量<br>4. 排查网络故障</p><h4>如何使用PING检测工具?</h4><p>1. 输入域名或IP地址<br>2. 选择PING检测<br>3. 查看多地区检测结果：<br>- 响应时间<br>- 丢包率<br>- 网络状态</p><h4>检测指标说明</h4><p>1. 响应时间(RTT)：越低越好<br>2. 丢包率：正常应为0%<br>3. 网络稳定性</p><h4>使用场景</h4><p>1. 服务器性能监控<br>2. CDN节点测试<br>3. 网络故障诊断<br>4. 跨地区访问质量评估</p>",
   "region.cn_bj": "中国-北京",
-  "ting-zhi": "停止"
+  "ting-zhi": "停止",
+  "region.ap-cn-bj": "亚太-中国-北京",
+  "region.ap-cn-hz": "亚太-中国-杭州",
+  "region.na-us-ca": "北美-美国-加州",
+  "region.na-us-wa": "北美-美国-华盛顿",
+  "region.na-us-ny": "北美-美国-纽约",
+  "region.ap-sg-sg": "亚太-新加坡-新加坡",
+  "region.ap-jp-tk": "亚太-日本-东京",
+  "region.ap-au-sd": "亚太-澳大利亚-悉尼",
+  "region.af-za-ct": "非洲-南非-开普敦",
+  "region.me-bh-mn": "中东-巴林-麦纳麦",
+  "region.eu-uk-ld": "欧洲-英国-伦敦",
+  "region.eu-ru-mw": "欧洲-俄罗斯-莫斯科",
+  "region.ap-cn-hk": "亚太-中国-香港"
 }

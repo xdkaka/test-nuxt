@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multiregionalt PING-testverktyg. Testar servernätverkets anslutningsprestanda, visar svarstider från olika regioner. Hjälper till att diagnostisera problem med nätverksåtkomstkvalitet.",
   "ping-jie-xi-html-content": "<h4>Vad är PING-test?</h4><p>PING är ett nätverksdiagnostikverktyg som används för att testa om en målvärd är nåbar och mäta nätverksfördröjning. Det fungerar genom att skicka ICMP-ekobegäran för att testa nätverksanslutning.</p><h4>PING-testets syfte</h4><p>1. Testa nätverksanslutning<br>2. Mäta nätverksfördröjning<br>3. Utvärdera nätverkskvalitet<br>4. Felsöka nätverksproblem</p><h4>Hur använder man PING-testverktyget?</h4><p>1. Ange domännamn eller IP-adress<br>2. Välj PING-test<br>3. Se multiregionala testresultat:<br>- Svarstid<br>- Paketförlust<br>- Nätverksstatus</p><h4>Testmätvärdenas betydelse</h4><p>1. Svarstid (RTT): Lägre är bättre<br>2. Paketförlust: Bör vara 0%<br>3. Nätverksstabilitet</p><h4>Användningsområden</h4><p>1. Serverprestanda-övervakning<br>2. CDN-nodtestning<br>3. Nätverksfelsökning<br>4. Utvärdering av åtkomstkvalitet mellan regioner</p>",
   "region.cn_bj": "Kina-Peking",
-  "ting-zhi": "stopp"
+  "ting-zhi": "stopp",
+  "region.ap-cn-bj": "Asien-Stillahavsområdet-Kina-Peking",
+  "region.ap-cn-hz": "Asien-Stillahavsområdet-Kina-Hangzhou",
+  "region.na-us-ca": "Nordamerika-USA-Kalifornien",
+  "region.na-us-wa": "Nordamerika-USA-Washington",
+  "region.na-us-ny": "Nordamerika-USA-New York",
+  "region.ap-sg-sg": "Asien-Stillahavsområdet-Singapore-Singapore",
+  "region.ap-jp-tk": "Asien-Stillahavsområdet-Japan-Tokyo",
+  "region.ap-au-sd": "Asien-Stillahavsområdet-Australien-Sydney",
+  "region.af-za-ct": "Afrika-Sydafrika-Kapstaden",
+  "region.me-bh-mn": "Mellanöstern-Bahrain-Manama",
+  "region.eu-uk-ld": "Europa-Storbritannien-London",
+  "region.eu-ru-mw": "Europa-Ryssland-Moskva",
+  "region.ap-cn-hk": "Asien-Stillahavsområdet-Kina-Hongkong"
 }

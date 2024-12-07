@@ -4,11 +4,11 @@ export const useQueryConfig = () => {
 
    const columnConfig = {
     mx: [
-        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
+        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "200" },
         { prop: "value", label: t('ji-lu-zhi'), minWidth: "300" },
         { prop: "priority", label: t('you-xian-ji') },
-        { prop: "ttl", label: "TTL" },
         { prop: "ip", label: "IP", minWidth: "450" },
+        { prop: "ttl", label: "TTL" },
         { prop: "rtt", label: t('xiang-ying-shi-jian') }
     ],
     a: [
@@ -52,7 +52,7 @@ export const useQueryConfig = () => {
 }
 
 const QueryTypeList = ref<QueryType[]>([
-    { label: t('mx-jie-xi'), subject: t('mx-jie-xi-cha-xun'), value: "mx", page: "/mx", catogory: "domain", title: t('mx-jie-xi-ji-lu-cha-xun-you-jian-fu-wu-qi-jie-xi-jian-ce-gong-ju'), keywords: t('mx-ji-lu-cha-xun-you-jian-fu-wu-qi-dns-jie-xi-mx-you-xian-ji'), description: t('zhuan-ye-de-mx-ji-lu-zai-xian-cha-xun-gong-ju-kuai-su-jian-ce-you-jian-fu-wu-qi-jie-xi-pei-zhi-xian-shi-mx-ji-lu-you-xian-ji-ttl-zhi-ji-xiang-ying-shi-jian-bang-zhu-zhen-duan-you-jian-xi-tong-pei-zhi-wen-ti'), htmlContent: t('mx-jie-xi-html-content') },
+    { label: t('mx-jie-xi'), subject: t('mx-jie-xi-cha-xun'), value: "mx", page: "/mx", catogory: "domain",  title: t('mx-jie-xi-ji-lu-cha-xun-you-jian-fu-wu-qi-jie-xi-jian-ce-gong-ju'), keywords: t('mx-ji-lu-cha-xun-you-jian-fu-wu-qi-dns-jie-xi-mx-you-xian-ji'), description: t('zhuan-ye-de-mx-ji-lu-zai-xian-cha-xun-gong-ju-kuai-su-jian-ce-you-jian-fu-wu-qi-jie-xi-pei-zhi-xian-shi-mx-ji-lu-you-xian-ji-ttl-zhi-ji-xiang-ying-shi-jian-bang-zhu-zhen-duan-you-jian-xi-tong-pei-zhi-wen-ti'), htmlContent: t('mx-jie-xi-html-content') },
     { label: t('a-jie-xi'), subject: t('a-jie-xi-cha-xun'), value: "a", page: "/a", catogory: "domain", title: t('a-ji-lu-ji-lu-cha-xun-yu-ming-ip-di-zhi-jie-xi-cha-xun-gong-ju'), keywords: t('a-ji-lu-cha-xun-yu-ming-jie-xi-ip-di-zhi-dns-jian-ce'), description: t('quan-wei-de-a-ji-lu-zai-xian-cha-xun-gong-ju-shi-shi-cha-kan-yu-ming-jie-xi-de-ip-di-zhi-zhi-chi-duo-di-qu-jian-ce-xian-shi-ttl-zhi-he-xiang-ying-shi-jian-zhu-nin-kuai-su-zhen-duan-jie-xi-pei-zhi'), htmlContent: t('a-jie-xi-html-content') },
     { label: t('cname-jie-xi'), subject: t('cname-jie-xi-cha-xun'), value: "cname", page: "/cname", catogory: "domain", title: t('cname-ji-lu-cha-xun-yu-ming-bie-ming-jie-xi-jian-ce-gong-ju'), keywords: t('cname-ji-lu-yu-ming-bie-ming-dns-jie-xi-yu-ming-jian-ce'), description: t('zhuan-ye-de-cname-ji-lu-cha-xun-gong-ju-jian-ce-yu-ming-bie-ming-pei-zhi-xian-shi-mu-biao-yu-ming-jie-xi-ip-ji-ttl-zhi-bang-zhu-nin-yan-zheng-cdn-deng-fu-wu-pei-zhi-shi-fou-zheng-que'), htmlContent: t('cname-jie-xi-html-content') },
     { label: t('ns-jie-xi'), subject: t('ns-jie-xi-cha-xun'), value: "ns", page: "/ns", catogory: "domain", title: t('ns-ji-lu-ji-lu-cha-xun-yu-ming-fu-wu-qi-jie-xi-jian-ce-gong-ju'), keywords: t('ns-ji-lu-cha-xun-yu-ming-fu-wu-qi-dns-fu-wu-qi-yu-ming-jie-xi'), description: t('zhuan-ye-de-ns-ji-lu-zai-xian-cha-xun-gong-ju-jian-ce-yu-ming-fu-wu-qi-pei-zhi-xian-shi-ns-fu-wu-qi-di-zhi-ip-ji-xiang-ying-shi-jian-bang-zhu-zhen-duan-yu-ming-jie-xi-yi-chang-wen-ti'), htmlContent: t('ns-jie-xi-html-content') },

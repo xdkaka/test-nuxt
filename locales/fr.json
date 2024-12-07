@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Outil de test PING multi-régions, vérification de la connectivité serveur, affichage des temps de réponse par région pour diagnostiquer la qualité d'accès réseau",
   "ping-jie-xi-html-content": "<h4>Qu'est-ce qu'un test PING ?</h4><p>PING est un outil de diagnostic réseau utilisé pour tester l'accessibilité d'un hôte et mesurer la latence réseau. Il fonctionne en envoyant des requêtes ICMP Echo.</p><h4>Utilité du PING</h4><p>1. Test de connectivité réseau<br>2. Mesure de latence<br>3. Évaluation qualité réseau<br>4. Diagnostic de problèmes</p><h4>Comment utiliser l'outil PING ?</h4><p>1. Entrez le domaine ou l'IP<br>2. Sélectionnez le test PING<br>3. Consultez les résultats multi-régions :<br>- Temps de réponse<br>- Taux de perte<br>- État du réseau</p><h4>Indicateurs mesurés</h4><p>1. Temps de réponse (RTT) : plus bas = meilleur<br>2. Taux de perte : idéalement 0%<br>3. Stabilité réseau</p><h4>Cas d'utilisation</h4><p>1. Surveillance serveur<br>2. Test nodes CDN<br>3. Diagnostic réseau<br>4. Évaluation qualité inter-régions</p>",
   "region.cn_bj": "Chine-Pékin",
-  "ting-zhi": "arrêt"
+  "ting-zhi": "arrêt",
+  "region.ap-cn-bj": "Asie-Pacifique-Chine-Pékin",
+  "region.ap-cn-hz": "Asie-Pacifique-Chine-Hangzhou", 
+  "region.na-us-ca": "Amérique du Nord-États-Unis-Californie",
+  "region.na-us-wa": "Amérique du Nord-États-Unis-Washington",
+  "region.na-us-ny": "Amérique du Nord-États-Unis-New York",
+  "region.ap-sg-sg": "Asie-Pacifique-Singapour-Singapour",
+  "region.ap-jp-tk": "Asie-Pacifique-Japon-Tokyo",
+  "region.ap-au-sd": "Asie-Pacifique-Australie-Sydney",
+  "region.af-za-ct": "Afrique-Afrique du Sud-Le Cap",
+  "region.me-bh-mn": "Moyen-Orient-Bahreïn-Manama",
+  "region.eu-uk-ld": "Europe-Royaume-Uni-Londres",
+  "region.eu-ru-mw": "Europe-Russie-Moscou",
+  "region.ap-cn-hk": "Asie-Pacifique-Chine-Hong Kong"
 }

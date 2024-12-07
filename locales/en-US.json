@@ -66,5 +66,18 @@
   "ping-jian-ce-wang-luo-yan-chi-lian-tong-xing-ce-shi-xiang-ying-shi-jian": "PING Test, Network Latency, Connectivity Test, Response Time",
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multi-region PING testing tool to check server network connectivity performance. Shows response times from different regions to help diagnose network access quality issues",
   "ping-jie-xi-html-content": "<h4>What is PING Testing?</h4><p>PING is a network diagnostic tool used to test host reachability and network latency. It works by sending ICMP echo requests to test network connectivity.</p><h4>Purpose of PING Testing</h4><p>1. Test network connectivity<br>2. Check network latency<br>3. Evaluate network quality<br>4. Troubleshoot network issues</p><h4>How to Use the PING Test Tool?</h4><p>1. Enter Domain or IP address<br>2. Select PING test<br>3. View multi-region test results:<br>- Response time<br>- Packet loss rate<br>- Network status</p><h4>Test Metrics Explained</h4><p>1. Response time (RTT): Lower is better<br>2. Packet loss: Should be 0%<br>3. Network stability</p><h4>Use Cases</h4><p>1. Server performance monitoring<br>2. CDN node testing<br>3. Network troubleshooting<br>4. Cross-region access quality assessment</p>",
-  "ting-zhi": "Stop"
+  "ting-zhi": "Stop",
+  "region.ap-cn-bj": "Asia Pacific-China-Beijing",
+  "region.ap-cn-hz": "Asia Pacific-China-Hangzhou", 
+  "region.na-us-ca": "North America-USA-California",
+  "region.na-us-wa": "North America-USA-Washington",
+  "region.na-us-ny": "North America-USA-New York",
+  "region.ap-sg-sg": "Asia Pacific-Singapore",
+  "region.ap-jp-tk": "Asia Pacific-Japan-Tokyo",
+  "region.ap-au-sd": "Asia Pacific-Australia-Sydney",
+  "region.af-za-ct": "Africa-South Africa-Cape Town",
+  "region.me-bh-mn": "Middle East-Bahrain-Manama",
+  "region.eu-uk-ld": "Europe-UK-London",
+  "region.eu-ru-mw": "Europe-Russia-Moscow",
+  "region.ap-cn-hk": "Asia Pacific-China-Hong Kong"
 }

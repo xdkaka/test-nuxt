@@ -67,5 +67,17 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Multi-Region PING-Tool - Testet Server-Konnektivität, zeigt regionale Antwortzeiten zur Diagnose von Netzwerkqualität",
   "ping-jie-xi-html-content": "<h4>Was ist ein PING-Test?</h4><p>PING ist ein Netzwerk-Diagnosewerkzeug zur Prüfung der Erreichbarkeit und Latenz von Hosts durch ICMP-Echo-Anfragen.</p><h4>PING-Test Zweck</h4><p>1. Netzwerk-Konnektivität testen<br>2. Latenz messen<br>3. Netzwerkqualität bewerten<br>4. Probleme diagnostizieren</p><h4>Verwendung des PING-Tools</h4><p>1. Domain/IP eingeben<br>2. PING-Test wählen<br>3. Multi-Region Ergebnisse sehen:<br>- Antwortzeiten<br>- Paketverluste<br>- Netzwerkstatus</p><h4>Messwerte</h4><p>1. Antwortzeit (RTT): Je niedriger, desto besser<br>2. Paketverlust: Idealerweise 0%<br>3. Netzwerkstabilität</p><h4>Anwendungsfälle</h4><p>1. Server-Performance Monitoring<br>2. CDN-Node Tests<br>3. Netzwerk-Troubleshooting<br>4. Regionale Zugriffs-Qualität</p>",
   "region.cn_bj": "China-Peking",
-  "ting-zhi": "stoppen"
+  "ting-zhi": "stoppen",
+  "region.ap-cn-hz": "Asien-Pazifik-China-Hangzhou",
+  "region.na-us-ca": "Nordamerika-USA-Kalifornien", 
+  "region.na-us-wa": "Nordamerika-USA-Washington",
+  "region.na-us-ny": "Nordamerika-USA-New York",
+  "region.ap-sg-sg": "Asien-Pazifik-Singapur",
+  "region.ap-jp-tk": "Asien-Pazifik-Japan-Tokio",
+  "region.ap-au-sd": "Asien-Pazifik-Australien-Sydney",
+  "region.af-za-ct": "Afrika-Südafrika-Kapstadt",
+  "region.me-bh-mn": "Nahost-Bahrain-Manama",
+  "region.eu-uk-ld": "Europa-UK-London",
+  "region.eu-ru-mw": "Europa-Russland-Moskau",
+  "region.ap-cn-hk": "Asien-Pazifik-China-Hongkong"
 }

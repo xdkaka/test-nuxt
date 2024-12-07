@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "多地區PING檢測工具，測試伺服器網路連通性能，顯示不同地區響應時間，幫助診斷網路訪問質量問題",
   "ping-jie-xi-html-content": "<h4>什麼是PING檢測？</h4><p>PING是一種網路診斷工具，用於測試目標主機是否可達以及網路延遲情況。它通過發送ICMP回顯請求來測試網路連通性。</p><h4>PING檢測的作用</h4><p>1. 測試網路連通性<br>2. 檢測網路延遲<br>3. 評估網路質量<br>4. 排查網路故障</p><h4>如何使用PING檢測工具？</h4><p>1. 輸入域名或IP地址<br>2. 選擇PING檢測<br>3. 查看多地區檢測結果：<br>- 響應時間<br>- 丟包率<br>- 網路狀態</p><h4>檢測指標說明</h4><p>1. 響應時間(RTT)：越低越好<br>2. 丟包率：正常應為0%<br>3. 網路穩定性</p><h4>使用場景</h4><p>1. 伺服器性能監控<br>2. CDN節點測試<br>3. 網路故障診斷<br>4. 跨地區訪問質量評估</p>",
   "region.cn_bj": "中國-北京",
-  "ting-zhi": "停止"
+  "ting-zhi": "停止",
+  "region.ap-cn-bj": "亞太-中國-北京",
+  "region.ap-cn-hz": "亞太-中國-杭州",
+  "region.na-us-ca": "北美-美國-加州",
+  "region.na-us-wa": "北美-美國-華盛頓",
+  "region.na-us-ny": "北美-美國-紐約",
+  "region.ap-sg-sg": "亞太-新加坡-新加坡",
+  "region.ap-jp-tk": "亞太-日本-東京",
+  "region.ap-au-sd": "亞太-澳大利亞-雪梨",
+  "region.af-za-ct": "非洲-南非-開普敦",
+  "region.me-bh-mn": "中東-巴林-麥納麥",
+  "region.eu-uk-ld": "歐洲-英國-倫敦",
+  "region.eu-ru-mw": "歐洲-俄羅斯-莫斯科",
+  "region.ap-cn-hk": "亞太-中國-香港"
 }

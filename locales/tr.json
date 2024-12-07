@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Çoklu bölge PING test aracı, sunucu ağ bağlantı performansını test eder, farklı bölgelerdeki yanıt sürelerini gösterir, ağ erişim kalitesi sorunlarını teşhis etmenize yardımcı olur",
   "ping-jie-xi-html-content": "<h4>PING Testi Nedir?</h4><p>PING, hedef sunucunun erişilebilirliğini ve ağ gecikmesini test etmek için kullanılan bir ağ tanılama aracıdır. ICMP echo isteği göndererek ağ bağlantısını test eder.</p><h4>PING Testinin İşlevi</h4><p>1. Ağ bağlantısını test etme<br>2. Ağ gecikmesini kontrol etme<br>3. Ağ kalitesini değerlendirme<br>4. Ağ sorunlarını giderme</p><h4>PING Test Aracı Nasıl Kullanılır?</h4><p>1. Alan adı veya IP adresini girin<br>2. PING testini seçin<br>3. Çoklu bölge test sonuçlarını görüntüleyin:<br>- Yanıt süresi<br>- Paket kaybı oranı<br>- Ağ durumu</p><h4>Test Göstergeleri Açıklaması</h4><p>1. Yanıt süresi (RTT): Düşük olması daha iyidir<br>2. Paket kaybı oranı: Normal değer %0 olmalıdır<br>3. Ağ kararlılığı</p><h4>Kullanım Senaryoları</h4><p>1. Sunucu performans izleme<br>2. CDN düğüm testi<br>3. Ağ sorunu teşhisi<br>4. Bölgeler arası erişim kalitesi değerlendirmesi</p>",
   "region.cn_bj": "Çin-Pekin",
-  "ting-zhi": "durmak"
+  "ting-zhi": "durmak",
+  "region.ap-cn-bj": "Asya Pasifik-Çin-Pekin",
+  "region.ap-cn-hz": "Asya Pasifik-Çin-Hangzhou", 
+  "region.na-us-ca": "Kuzey Amerika-ABD-Kaliforniya",
+  "region.na-us-wa": "Kuzey Amerika-ABD-Washington",
+  "region.na-us-ny": "Kuzey Amerika-ABD-New York",
+  "region.ap-sg-sg": "Asya Pasifik-Singapur-Singapur",
+  "region.ap-jp-tk": "Asya Pasifik-Japonya-Tokyo",
+  "region.ap-au-sd": "Asya Pasifik-Avustralya-Sidney",
+  "region.af-za-ct": "Afrika-Güney Afrika-Cape Town",
+  "region.me-bh-mn": "Orta Doğu-Bahreyn-Manama",
+  "region.eu-uk-ld": "Avrupa-İngiltere-Londra",
+  "region.eu-ru-mw": "Avrupa-Rusya-Moskova",
+  "region.ap-cn-hk": "Asya Pasifik-Çin-Hong Kong"
 }

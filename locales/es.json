@@ -67,5 +67,18 @@
   "duo-di-qu-ping-jian-ce-gong-ju-ce-shi-fu-wu-qi-wang-luo-lian-tong-xing-neng-xian-shi-bu-tong-di-qu-xiang-ying-shi-jian-bang-zhu-zhen-duan-wang-luo-fang-wen-zhi-liang-wen-ti": "Herramienta de prueba PING multi-región, verifica rendimiento de conectividad de red del servidor, muestra tiempos de respuesta por región, ayuda a diagnosticar problemas de calidad de acceso a red",
   "ping-jie-xi-html-content": "<h4>¿Qué es la prueba PING?</h4><p>PING es una herramienta de diagnóstico de red utilizada para probar la accesibilidad de un host destino y la latencia de red. Funciona enviando solicitudes de eco ICMP para probar la conectividad de red.</p><h4>Funciones de la prueba PING</h4><p>1. Probar conectividad de red<br>2. Verificar latencia de red<br>3. Evaluar calidad de red<br>4. Diagnosticar problemas de red</p><h4>¿Cómo usar la herramienta PING?</h4><p>1. Ingrese dominio o dirección IP<br>2. Seleccione prueba PING<br>3. Ver resultados multi-región:<br>- Tiempo de respuesta<br>- Tasa de pérdida de paquetes<br>- Estado de red</p><h4>Explicación de métricas</h4><p>1. Tiempo de respuesta (RTT): menor es mejor<br>2. Pérdida de paquetes: normal es 0%<br>3. Estabilidad de red</p><h4>Casos de uso</h4><p>1. Monitoreo de rendimiento de servidor<br>2. Prueba de nodos CDN<br>3. Diagnóstico de fallos de red<br>4. Evaluación de calidad de acceso entre regiones</p>",
   "region.cn_bj": "China-Beijing",
-  "ting-zhi": "detener"
+  "ting-zhi": "detener",
+  "region.ap-cn-bj": "Asia Pacífico-China-Pekín",
+  "region.ap-cn-hz": "Asia Pacífico-China-Hangzhou", 
+  "region.na-us-ca": "Norteamérica-EE.UU.-California",
+  "region.na-us-wa": "Norteamérica-EE.UU.-Washington",
+  "region.na-us-ny": "Norteamérica-EE.UU.-Nueva York",
+  "region.ap-sg-sg": "Asia Pacífico-Singapur-Singapur",
+  "region.ap-jp-tk": "Asia Pacífico-Japón-Tokio",
+  "region.ap-au-sd": "Asia Pacífico-Australia-Sídney",
+  "region.af-za-ct": "África-Sudáfrica-Ciudad del Cabo",
+  "region.me-bh-mn": "Oriente Medio-Baréin-Manama",
+  "region.eu-uk-ld": "Europa-Reino Unido-Londres",
+  "region.eu-ru-mw": "Europa-Rusia-Moscú",
+  "region.ap-cn-hk": "Asia Pacífico-China-Hong Kong"
 }
