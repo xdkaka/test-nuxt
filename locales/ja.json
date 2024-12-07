@@ -80,5 +80,8 @@
   "region.me-bh-mn": "中東-バーレーン-マナーマ",
   "region.eu-uk-ld": "ヨーロッパ-イギリス-ロンドン",
   "region.eu-ru-mw": "ヨーロッパ-ロシア-モスクワ",
-  "region.ap-cn-hk": "アジア太平洋-中国-香港"
+  "region.ap-cn-hk": "アジア太平洋-中国-香港",
+  "default-seo-title": "Lookup DNS - プロフェッショナルなDNS解析検査＆ネットワーク診断ツール",
+  "default-seo-keywords": "Lookup DNS、DNS検索、MXレコード検索、Aレコード検索、CNAMEレコード検索、NSレコード検索、TXTレコード検索、PTR逆引き解析、Ping検査、ドメイン解析検査、DNSツール、ネットワーク遅延テスト、IP逆引き検索",
+  "default-seo-description": "プロフェッショナルなDNSオンライン検索・ネットワーク診断ツール。MXメールサーバー解析、AレコードIPアドレス検索、CNAMEエイリアス解析、NSネームサーバー検査、TXTレコード検索、PTR逆引き解析、複数地域Ping遅延テストなどの機能を提供。グローバル地域での検査に対応し、ドメイン解析設定とネットワークアクセス品質の問題を迅速に診断できます。"
 }

@@ -79,5 +79,8 @@
   "region.me-bh-mn": "Middle East-Bahrain-Manama",
   "region.eu-uk-ld": "Europe-UK-London",
   "region.eu-ru-mw": "Europe-Russia-Moscow",
-  "region.ap-cn-hk": "Asia Pacific-China-Hong Kong"
+  "region.ap-cn-hk": "Asia Pacific-China-Hong Kong",
+  "default-seo-title": "Lookup DNS - Professional DNS Resolution Testing & Network Diagnostic Tool",
+  "default-seo-keywords": "Lookup DNS, DNS lookup, MX record lookup, A record lookup, CNAME record lookup, NS record lookup, TXT record lookup, PTR reverse lookup, Ping test, domain resolution testing, DNS tools, network latency test, IP to domain lookup",
+  "default-seo-description": "Professional DNS online lookup and network diagnostic tool providing MX mail server resolution, A record IP address lookup, CNAME alias resolution, NS nameserver testing, TXT record lookup, PTR reverse lookup and multi-region Ping latency testing. Supporting global region testing to help quickly diagnose domain resolution configuration and network access quality issues."
 }

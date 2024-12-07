@@ -3,14 +3,7 @@ export const useQueryConfig = () => {
   const { t } = nuxtApp.$i18n
 
    const columnConfig = {
-    mx: [
-        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "200" },
-        { prop: "value", label: t('ji-lu-zhi'), minWidth: "300" },
-        { prop: "priority", label: t('you-xian-ji') },
-        { prop: "ip", label: "IP", minWidth: "450" },
-        { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') }
-    ],
+    
     a: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "ip", label: "IP", minWidth: "450" },
@@ -24,16 +17,24 @@ export const useQueryConfig = () => {
         { prop: "ttl", label: "TTL" },
         { prop: "rtt", label: t('xiang-ying-shi-jian') },
     ],
-    ns: [
-        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
-        { prop: "host", label: t('ji-lu-zhi'), minWidth: "300" },
+    mx: [
+        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "200" },
+        { prop: "value", label: t('ji-lu-zhi'), minWidth: "300" },
+        { prop: "priority", label: t('you-xian-ji') },
         { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
+        { prop: "rtt", label: t('xiang-ying-shi-jian') }
     ],
     txt: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "txt", label: t('ji-lu-zhi'), minWidth: "500" },
+        { prop: "ttl", label: "TTL" },
+        { prop: "rtt", label: t('xiang-ying-shi-jian') },
+    ],
+    ns: [
+        { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
+        { prop: "host", label: t('ji-lu-zhi'), minWidth: "300" },
+        { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
         { prop: "rtt", label: t('xiang-ying-shi-jian') },
     ],

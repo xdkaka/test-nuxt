@@ -80,5 +80,8 @@
   "region.me-bh-mn": "Oriente Medio-Baréin-Manama",
   "region.eu-uk-ld": "Europa-Reino Unido-Londres",
   "region.eu-ru-mw": "Europa-Rusia-Moscú",
-  "region.ap-cn-hk": "Asia Pacífico-China-Hong Kong"
+  "region.ap-cn-hk": "Asia Pacífico-China-Hong Kong",
+  "default-seo-title": "Consulta DNS - Herramienta profesional para consultas DNS y diagnóstico de redes",
+  "default-seo-keywords": "Consulta DNS, búsqueda DNS, consulta registro MX, consulta registro A, consulta registro CNAME, consulta registro NS, consulta registro TXT, consulta inversa PTR, prueba PING, prueba resolución dominio, herramientas DNS, prueba latencia red, búsqueda IP a dominio",
+  "default-seo-description": "Herramienta profesional en línea para consultas DNS y diagnóstico de redes que ofrece resolución MX para servidores de correo, consulta de registros A para direcciones IP, resolución CNAME para alias, verificación NS de servidores de nombres, consulta de registros TXT, resolución inversa PTR y pruebas PING desde múltiples regiones para diagnosticar problemas de configuración DNS y calidad de conexión de red."
 }

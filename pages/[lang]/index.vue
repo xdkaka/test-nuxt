@@ -8,21 +8,31 @@
 
 
 <script lang="ts" setup>
+const { t } = useI18n()
 const { QueryTypeList } = useQueryConfig()
-import { useRoute } from 'vue-router'
+const { currentPath, currentQueryType } = useQueryType()
 
-const route = useRoute()
-const currentPath = route.path
-const currentType = QueryTypeList.value.find(item => currentPath.includes(item.page)) || QueryTypeList.value[0]
+const defaultSEO = {
+  title: t('default-seo-title'),
+  keywords: t('default-seo-keywords'),
+  description: t('default-seo-description')
+}
+
+const currentType = computed(() => {
+  if (!currentQueryType.value) {
+    return defaultSEO
+  }
+  return QueryTypeList.value.find(item => item.value === currentQueryType.value) || defaultSEO
+})
 
 useHead({
-  title: currentType.title + ' - Lookup DNS',
+  title: currentType.value.title + ' - Lookup DNS',
   meta: [
-    { hid: "keywords", name: "keywords", content: currentType.keywords },
+    { hid: "keywords", name: "keywords", content: currentType.value.keywords },
     {
       hid: "description", 
       name: "description",
-      content: currentType.description,
+      content: currentType.value.description,
     },
   ],
 });

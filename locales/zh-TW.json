@@ -80,5 +80,8 @@
   "region.me-bh-mn": "中東-巴林-麥納麥",
   "region.eu-uk-ld": "歐洲-英國-倫敦",
   "region.eu-ru-mw": "歐洲-俄羅斯-莫斯科",
-  "region.ap-cn-hk": "亞太-中國-香港"
+  "region.ap-cn-hk": "亞太-中國-香港",
+  "default-seo-title": "Lookup DNS - 專業的DNS解析檢測與網路診斷工具",
+  "default-seo-keywords": "Lookup DNS,DNS查詢,MX記錄查詢,A記錄查詢,CNAME記錄查詢,NS記錄查詢,TXT記錄查詢,PTR反向解析,Ping檢測,域名解析檢測,DNS工具,網路延遲測試,IP反查域名",
+  "default-seo-description": "專業的DNS線上查詢與網路診斷工具,提供MX郵件伺服器解析、A記錄IP地址查詢、CNAME別名解析、NS域名伺服器檢測、TXT文字記錄查詢、PTR反向解析以及多地區Ping網路延遲測試等功能,支援全球多地區檢測,幫助快速診斷域名解析配置和網路訪問質量問題"
 }

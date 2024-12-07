@@ -80,5 +80,8 @@
   "region.me-bh-mn": "Orta Doğu-Bahreyn-Manama",
   "region.eu-uk-ld": "Avrupa-İngiltere-Londra",
   "region.eu-ru-mw": "Avrupa-Rusya-Moskova",
-  "region.ap-cn-hk": "Asya Pasifik-Çin-Hong Kong"
+  "region.ap-cn-hk": "Asya Pasifik-Çin-Hong Kong",
+  "default-seo-title": "Lookup DNS - Profesyonel DNS Çözümleme Testi ve Ağ Tanılama Aracı",
+  "default-seo-keywords": "Lookup DNS, DNS sorgulama, MX kaydı sorgulama, A kaydı sorgulama, CNAME kaydı sorgulama, NS kaydı sorgulama, TXT kaydı sorgulama, PTR ters sorgulama, Ping testi, alan adı çözümleme testi, DNS araçları, ağ gecikme testi, IP'den alan adı sorgulama",
+  "default-seo-description": "Profesyonel DNS çevrimiçi sorgulama ve ağ tanılama aracı, MX posta sunucusu çözümlemesi, A kaydı IP adresi sorgulaması, CNAME takma ad çözümlemesi, NS alan adı sunucusu testi, TXT kaydı sorgulaması, PTR ters sorgulaması ve çoklu bölge Ping gecikme testi sunar. Global bölge testini destekleyerek alan adı çözümleme yapılandırması ve ağ erişim kalitesi sorunlarını hızlıca teşhis etmenize yardımcı olur."
 }

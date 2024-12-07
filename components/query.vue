@@ -195,6 +195,7 @@ import type { TableColumnCtx } from "element-plus";
 import { ref, computed, onMounted, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { getRegionList, queryDNS } from "~/api/query";
+import { useQueryType } from '~/composables/useQueryType'
 const { columnConfig, QueryTypeList } = useQueryConfig()
 
 // MX记录类型定义
@@ -354,23 +355,13 @@ const { t } = useI18n();
 // 获取配置的语言列表
 const { availableLocales } = useI18n();
 
-// 修改路由识别逻辑
-const currentPath = computed(() => {
-  const pathSegments = route.path.split('/').filter(Boolean);
-  
-  // 添加类型断言确保语言代码匹配
-  const firstSegment = pathSegments[0] as typeof availableLocales[number];
-  return pathSegments.length > 1 && availableLocales.includes(firstSegment)
-    ? pathSegments[1]
-    : pathSegments[0];
-});
+// 使用提取的组合式函数
+const { currentPath, currentQueryType } = useQueryType()
 
-// 根据路由设置当前查询类型
-const matchedType = computed(() => 
-  QueryTypeList.value.find(type => type.page.slice(1) === currentPath.value)
-);
-
-let currentQueryType = ref<string>(matchedType.value ? matchedType.value.value : "a");
+// 如果currentQueryType为空,设置为a
+if (!currentQueryType.value) {
+  currentQueryType.value = 'a'
+}
 
 // 获取当前类型的完整信息
 const currentType = computed(() => {
@@ -455,7 +446,7 @@ const renderList = (list: any[], regionKey: string) => {
   // 从上次的状态开始交替
   let isGrey = !lastIsGrey.value;
 
-  // 如果list为空，添加一条无数据记���
+  // 如果list为空，添加一条无数据记录
   if (!list || list.length === 0) {
     tableData.value.push({
       region: regionKey,

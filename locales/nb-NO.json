@@ -80,5 +80,8 @@
   "region.me-bh-mn": "Midtøsten-Bahrain-Manama",
   "region.eu-uk-ld": "Europa-Storbritannia-London",
   "region.eu-ru-mw": "Europa-Russland-Moskva",
-  "region.ap-cn-hk": "Asia-Stillehavet-Kina-Hong Kong"
+  "region.ap-cn-hk": "Asia-Stillehavet-Kina-Hong Kong",
+  "default-seo-title": "Lookup DNS - Profesjonelt verktøy for DNS-oppløsning og nettverksdiagnostikk",
+  "default-seo-keywords": "Lookup DNS, DNS-oppslag, MX-postoppslag, A-postoppslag, CNAME-postoppslag, NS-postoppslag, TXT-postoppslag, PTR reversoppslag, Ping-test, domeneoppløsningstest, DNS-verktøy, nettverksforsinkelsestest, IP til domeneoppslag",
+  "default-seo-description": "Profesjonelt DNS-oppslagsverktøy og nettverksdiagnostikkverktøy som tilbyr MX e-postserveroppløsning, A-post IP-adresseoppslag, CNAME-aliasoppløsning, NS-navneservertest, TXT-postoppslag, PTR reversoppslag og multiregional Ping-forsinkelsestest. Støtter global regionstesting for å raskt diagnostisere domeneoppløsningskonfigurasjon og nettverkstilgangskvalitetsproblemer."
 }
