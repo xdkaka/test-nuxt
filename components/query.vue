@@ -187,7 +187,10 @@
 
       <section v-if="!showTable" class="tips-section">
         <h2 class="tips-section__title">{{ t("ti-shi") }}</h2>
-        
+        <div
+          class="tips-section__content"
+          v-html="currentType.htmlContent"
+        ></div>
       </section>
     </main>
   </div>
@@ -263,12 +266,12 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 };
 
 // 响应式变量定义
-const { t, locale } = useI18n({
+const { t } = useI18n({
   useScope: 'global'
 });
 
 // 使用提取的组合式函数
-const { currentPath, currentQueryType } = useQueryType()
+const { currentQueryType } = useQueryType()
 
 // 如果currentQueryType为空,设置为a
 if (!currentQueryType.value) {
