@@ -131,7 +131,7 @@
               </span>
             </template>
             <template v-else-if="column?.prop === 'region'">
-              {{ t(`region.${scope.row.region}`) }}
+              {{ scope.row.region && scope.row.region !== '' ? t(`region.${scope.row.region}`) : '' }}
             </template>
             <template v-else-if="column?.prop === 'ttl'">
               <template v-if="scope.row.ttl">{{ scope.row.ttl }}</template>
@@ -588,19 +588,6 @@ const query = async () => {
   }
 };
 
-// 修改路由监听
-watch(
-  currentPath,
-  () => {
-    const matched = QueryTypeList.value.find(
-      (type) => type.page.slice(1) === currentPath.value
-    );
-    if (matched) {
-      currentQueryType.value = matched.value;
-    }
-  },
-  { immediate: true }
-);
 </script>
 
 <style scoped>
