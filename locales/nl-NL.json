@@ -72,7 +72,7 @@
   "region.ap-cn-hz": "Azië Pacific-China-Hangzhou",
   "region.na-us-ca": "Noord Amerika-VS-Californië",
   "region.na-us-wa": "Noord Amerika-VS-Washington",
-  "region.na-us-ny": "Noord Amerika-VS-New York", 
+  "region.na-us-ny": "Noord Amerika-VS-New York",
   "region.ap-sg-sg": "Azië Pacific-Singapore-Singapore",
   "region.ap-jp-tk": "Azië Pacific-Japan-Tokyo",
   "region.ap-au-sd": "Azië Pacific-Australië-Sydney",
@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "Azië Pacific-China-Hong Kong",
   "default-seo-title": "DNS Lookup - Professionele DNS-zoekmachine en netwerk diagnose tool",
   "default-seo-keywords": "DNS lookup, DNS records opzoeken, MX records, A records, CNAME records, NS records, TXT records, PTR reverse DNS, PING test, domein DNS check, DNS tools, netwerk latentie, IP lookup, DNS diagnostiek",
-  "default-seo-description": "Gratis professionele DNS zoekmachine en netwerk diagnose tool. Zoek MX records voor mailservers, A records voor IP-adressen, CNAME aliassen, NS nameservers, TXT records, voer PTR reverse lookups uit en test netwerk latentie via PING vanuit meerdere regio's. Ideaal voor het controleren van DNS configuraties en oplossen van netwerk problemen."
+  "default-seo-description": "Gratis professionele DNS zoekmachine en netwerk diagnose tool. Zoek MX records voor mailservers, A records voor IP-adressen, CNAME aliassen, NS nameservers, TXT records, voer PTR reverse lookups uit en test netwerk latentie via PING vanuit meerdere regio's. Ideaal voor het controleren van DNS configuraties en oplossen van netwerk problemen.",
+  "chao-shi": "time-out"
 }

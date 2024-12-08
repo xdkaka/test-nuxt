@@ -69,7 +69,7 @@
   "region.cn_bj": "China-Beijing",
   "ting-zhi": "detener",
   "region.ap-cn-bj": "Asia Pacífico-China-Pekín",
-  "region.ap-cn-hz": "Asia Pacífico-China-Hangzhou", 
+  "region.ap-cn-hz": "Asia Pacífico-China-Hangzhou",
   "region.na-us-ca": "Norteamérica-EE.UU.-California",
   "region.na-us-wa": "Norteamérica-EE.UU.-Washington",
   "region.na-us-ny": "Norteamérica-EE.UU.-Nueva York",
@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "Asia Pacífico-China-Hong Kong",
   "default-seo-title": "Consulta DNS - Herramienta profesional para consultas DNS y diagnóstico de redes",
   "default-seo-keywords": "Consulta DNS, búsqueda DNS, consulta registro MX, consulta registro A, consulta registro CNAME, consulta registro NS, consulta registro TXT, consulta inversa PTR, prueba PING, prueba resolución dominio, herramientas DNS, prueba latencia red, búsqueda IP a dominio",
-  "default-seo-description": "Herramienta profesional en línea para consultas DNS y diagnóstico de redes que ofrece resolución MX para servidores de correo, consulta de registros A para direcciones IP, resolución CNAME para alias, verificación NS de servidores de nombres, consulta de registros TXT, resolución inversa PTR y pruebas PING desde múltiples regiones para diagnosticar problemas de configuración DNS y calidad de conexión de red."
+  "default-seo-description": "Herramienta profesional en línea para consultas DNS y diagnóstico de redes que ofrece resolución MX para servidores de correo, consulta de registros A para direcciones IP, resolución CNAME para alias, verificación NS de servidores de nombres, consulta de registros TXT, resolución inversa PTR y pruebas PING desde múltiples regiones para diagnosticar problemas de configuración DNS y calidad de conexión de red.",
+  "chao-shi": "se acabó el tiempo"
 }

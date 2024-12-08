@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "Asien-Stillahavsområdet-Kina-Hongkong",
   "default-seo-title": "Lookup DNS - Professionellt verktyg för DNS-uppslagning och nätverksdiagnostik",
   "default-seo-keywords": "Lookup DNS, DNS-sökning, MX-postsökning, A-postsökning, CNAME-postsökning, NS-postsökning, TXT-postsökning, PTR omvänd sökning, Ping-test, domänuppslagningstest, DNS-verktyg, nätverksfördröjningstest, IP till domänsökning",
-  "default-seo-description": "Professionellt verktyg för DNS-sökning och nätverksdiagnostik online som erbjuder MX e-postserveruppslagning, A-post IP-adressökning, CNAME-aliasuppslagning, NS-namnservertest, TXT-postsökning, PTR omvänd sökning samt multiregionalt Ping-fördröjningstest. Stöder global regionstestning för att snabbt diagnostisera problem med domänuppslagningskonfiguration och nätverksåtkomstkvalitet."
+  "default-seo-description": "Professionellt verktyg för DNS-sökning och nätverksdiagnostik online som erbjuder MX e-postserveruppslagning, A-post IP-adressökning, CNAME-aliasuppslagning, NS-namnservertest, TXT-postsökning, PTR omvänd sökning samt multiregionalt Ping-fördröjningstest. Stöder global regionstestning för att snabbt diagnostisera problem med domänuppslagningskonfiguration och nätverksåtkomstkvalitet.",
+  "chao-shi": "time out"
 }

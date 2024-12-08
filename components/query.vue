@@ -96,13 +96,13 @@
       >
         <el-table-column
           v-for="column in currentColumns"
-          :key="column.prop"
-          :prop="column.prop"
-          :label="column.label"
-          :min-width="column.minWidth"
+          :key="column?.prop"
+          :prop="column?.prop"
+          :label="column?.label"
+          :min-width="column?.minWidth"
         >
           <template #default="scope">
-            <template v-if="column.prop === 'ip'">
+            <template v-if="column?.prop === 'ip'">
               <div class="ip-cell" v-if="scope.row.ip && scope.row.ip !== '-'">
                 <div>{{ scope.row.ip }}</div>
                 <el-icon
@@ -117,19 +117,26 @@
                 </el-tag>
               </div>
             </template>
-            <template v-else-if="column.prop === 'rtt'">
+            <template v-else-if="column?.prop === 'rtt'">
               <span v-if="scope.row.failed">{{ t('cha-xun-shi-bai') }}</span>
               <span v-else :class="getRttClass(scope.row.rtt)">
                 {{ formatRtt(scope.row.rtt) }}
               </span>
             </template>
-            <template v-else-if="column.prop === 'region'">
+            <template v-else-if="column?.prop === 'ping_time'">
+              <span v-if="scope.row.failed">{{ t('cha-xun-shi-bai') }}</span>
+              <span v-else-if="!scope.row.ping_time" class="rtt-slow">{{ t('chao-shi') }}</span>
+              <span v-else :class="getRttClass(scope.row.ping_time)">
+                {{ formatRtt(scope.row.ping_time) }}
+              </span>
+            </template>
+            <template v-else-if="column?.prop === 'region'">
               {{ t(`region.${scope.row.region}`) }}
             </template>
-            <template v-else-if="column.prop === 'ttl'">
-              <template v-if="scope.row.ttl">{{ scope.row.ttl }}s</template>
+            <template v-else-if="column?.prop === 'ttl'">
+              <template v-if="scope.row.ttl">{{ scope.row.ttl }}</template>
             </template>
-            <template v-else-if="column.prop === 'txt'">
+            <template v-else-if="column?.prop === 'txt'">
               <div class="value-cell">
                 <div v-for="(item, index) in scope.row.txt" :key="index">
                   {{ item }}
@@ -145,20 +152,20 @@
             </template>
             <template
               v-else-if="
-                ['value', 'target', 'host', 'ptr'].includes(column.prop)
+                ['value', 'target', 'host', 'ptr'].includes(column?.prop || '')
               "
             >
               <div class="value-cell">
-                {{ scope.row[column.prop] || "-" }}
+                {{ scope.row[column?.prop || ''] || "-" }}
                 <el-icon
                   v-if="
-                    scope.row[column.prop] &&
-                    scope.row[column.prop] !== '' &&
-                    scope.row[column.prop] !== '-' &&
+                    scope.row[column?.prop || ''] &&
+                    scope.row[column?.prop || ''] !== '' &&
+                    scope.row[column?.prop || ''] !== '-' &&
                     !scope.row.failed
                   "
                   class="copy-icon"
-                  @click="copyToClipboard(scope.row[column.prop])"
+                  @click="copyToClipboard(scope.row[column?.prop || ''])"
                 >
                   <DocumentCopy />
                 </el-icon>
@@ -166,7 +173,7 @@
             </template>
             <template v-else>
               <div class="value-cell">
-                <div>{{ scope.row[column.prop] || "-" }}</div>
+                <div>{{ scope.row[column?.prop || ''] || "-" }}</div>
               </div>
             </template>
           </template>
@@ -197,102 +204,7 @@ import { useRouter, useRoute } from "vue-router";
 import { getRegionList, queryDNS } from "~/api/query";
 import { useQueryType } from '~/composables/useQueryType'
 const { columnConfig, QueryTypeList } = useQueryConfig()
-
-// MX记录类型定义
-interface DNSRecordMX {
-  type: string;
-  priority: number;
-  host: string;
-  ip: string;
-  location: string;
-  ttl: number;
-  name: string;
-  rtt: string;
-}
-
-// A记录类型定义
-interface DNSRecordA {
-  type: string;
-  ip: string;
-  location: string;
-  ttl: number;
-  name: string;
-  rtt: string;
-}
-
-// CNAME记录类型定义
-interface DNSRecordCNAME {
-  type: string;
-  target: string;
-  ip: string;
-  location: string;
-  ttl: number;
-  name: string;
-  rtt: string;
-}
-
-// NS记录类型定义
-interface DNSRecordNS {
-  type: string;
-  host: string;
-  ip: string;
-  location: string;
-  ttl: number;
-  name: string;
-  rtt: string;
-}
-
-// TXT记录类型定义
-interface DNSRecordTXT {
-  type: string;
-  txt: string[];
-  ttl: number;
-  name: string;
-  rtt: string;
-}
-
-// PTR记录类型定义
-interface DNSRecordPTR {
-  type: string;
-  ptr: string;
-  ttl: number;
-  name: string;
-  rtt: string;
-  ip: string;
-  location: string;
-}
-
-// PING记录类型定义
-interface DNSRecordPing {
-  type: string;
-  rtt: string;
-  name: string;
-  ip: string;
-  location: string;
-}
-
-interface Dns {
-  region: string;
-  value: string;
-  priority: string;
-  ttl: string;
-  isGrey: boolean;
-  rowSpan?: number;
-  ip?: string;
-  location?: string;
-  rtt?: string;
-  target?: string;
-  failed?: boolean;
-  txt?: string[];
-  ptr?: string;
-  host?: string;
-}
-
-interface TableColumn {
-  prop: string;
-  label: string;
-  width?: string;
-}
+import type { Dns, DNSRecordMX, DNSRecordA, DNSRecordCNAME, DNSRecordNS, DNSRecordTXT, DNSRecordPTR, DNSRecordPing } from '~/composables/useQueryConfig'
 
 interface SpanMethodProps {
   row: Dns;
@@ -351,9 +263,6 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 
 // 响应式变量定义
 const { t } = useI18n();
-
-// 获取配置的语言列表
-const { availableLocales } = useI18n();
 
 // 使用提取的组合式函数
 const { currentPath, currentQueryType } = useQueryType()
@@ -455,10 +364,13 @@ const renderList = (list: any[], regionKey: string) => {
       ttl: "",
       ip: "-",
       location: "",
-      rtt: "",
+      rtt: "-",
       isGrey: isGrey,
       rowSpan: 1,
       host: "-",
+      ptr: "-",
+      txt: "-",
+      ping_time: "-",
     });
     lastIsGrey.value = isGrey;
     return;
@@ -563,6 +475,7 @@ const renderList = (list: any[], regionKey: string) => {
         rtt: record.rtt,
         isGrey: isGrey,
         rowSpan: index === 0 ? list.length : 0,
+        ping_time: record.ping_time,
       };
       return row;
     }
@@ -576,6 +489,8 @@ const renderList = (list: any[], regionKey: string) => {
       isGrey: false,
       ptr: "",
       host: "",
+      txt: "",
+      ping_time: "",
     };
   });
 
@@ -704,7 +619,7 @@ watch(
 
 /* 容器样式 */
 .dns-query__container {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 2.5rem auto;
   padding: 2.5rem;
   background-color: var(--el-bg-color);

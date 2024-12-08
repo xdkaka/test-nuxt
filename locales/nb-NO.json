@@ -72,7 +72,7 @@
   "region.ap-cn-hz": "Asia-Stillehavet-Kina-Hangzhou",
   "region.na-us-ca": "Nord-Amerika-USA-California",
   "region.na-us-wa": "Nord-Amerika-USA-Washington",
-  "region.na-us-ny": "Nord-Amerika-USA-New York", 
+  "region.na-us-ny": "Nord-Amerika-USA-New York",
   "region.ap-sg-sg": "Asia-Stillehavet-Singapore-Singapore",
   "region.ap-jp-tk": "Asia-Stillehavet-Japan-Tokyo",
   "region.ap-au-sd": "Asia-Stillehavet-Australia-Sydney",
@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "Asia-Stillehavet-Kina-Hong Kong",
   "default-seo-title": "Lookup DNS - Profesjonelt verktøy for DNS-oppløsning og nettverksdiagnostikk",
   "default-seo-keywords": "Lookup DNS, DNS-oppslag, MX-postoppslag, A-postoppslag, CNAME-postoppslag, NS-postoppslag, TXT-postoppslag, PTR reversoppslag, Ping-test, domeneoppløsningstest, DNS-verktøy, nettverksforsinkelsestest, IP til domeneoppslag",
-  "default-seo-description": "Profesjonelt DNS-oppslagsverktøy og nettverksdiagnostikkverktøy som tilbyr MX e-postserveroppløsning, A-post IP-adresseoppslag, CNAME-aliasoppløsning, NS-navneservertest, TXT-postoppslag, PTR reversoppslag og multiregional Ping-forsinkelsestest. Støtter global regionstesting for å raskt diagnostisere domeneoppløsningskonfigurasjon og nettverkstilgangskvalitetsproblemer."
+  "default-seo-description": "Profesjonelt DNS-oppslagsverktøy og nettverksdiagnostikkverktøy som tilbyr MX e-postserveroppløsning, A-post IP-adresseoppslag, CNAME-aliasoppløsning, NS-navneservertest, TXT-postoppslag, PTR reversoppslag og multiregional Ping-forsinkelsestest. Støtter global regionstesting for å raskt diagnostisere domeneoppløsningskonfigurasjon og nettverkstilgangskvalitetsproblemer.",
+  "chao-shi": "time out"
 }

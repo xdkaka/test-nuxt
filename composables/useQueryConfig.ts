@@ -8,14 +8,12 @@ export const useQueryConfig = () => {
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') }
     ],
     cname: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "target", label: t('ji-lu-zhi'), minWidth: "300" },
         { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
     ],
     mx: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "200" },
@@ -23,32 +21,28 @@ export const useQueryConfig = () => {
         { prop: "priority", label: t('you-xian-ji') },
         { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') }
     ],
     txt: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "txt", label: t('ji-lu-zhi'), minWidth: "500" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
     ],
     ns: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "host", label: t('ji-lu-zhi'), minWidth: "300" },
         { prop: "ip", label: "IP", minWidth: "450" },
         { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
     ],
     ptr: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "ptr", label: t('ji-lu-zhi'), minWidth: "300" },
         { prop: "ip", label: "IP", minWidth: "450" },
-        { prop: "ttl", label: "TTL" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
+        { prop: "ttl", label: "TTL" },,
     ],
     ping: [
         { prop: "region", label: t('jian-ce-di-qu'), minWidth: "150" },
         { prop: "ip", label: "IP", minWidth: "450" },
-        { prop: "rtt", label: t('xiang-ying-shi-jian') },
+        { prop: "ping_time", label: t('xiang-ying-shi-jian') },
     ],
 }
 
@@ -68,7 +62,7 @@ const QueryTypeList = ref<QueryType[]>([
   }
 }
 
-interface QueryType {
+export interface QueryType {
     label: string;
     value: string;
     page: string;
@@ -78,4 +72,75 @@ interface QueryType {
     description: string;
     htmlContent: string;
     subject: string;
+}
+
+export interface Dns {
+  region: string;
+  value: string;
+  priority?: string;
+  ttl: string;
+  ip?: string;
+  location?: string;
+  rtt?: string;
+  isGrey: boolean;
+  rowSpan?: number;
+  failed?: boolean;
+  txt?: string;
+  target?: string;
+  host?: string;
+  ptr?: string;
+  ping_time?: string;
+}
+
+export interface DNSRecordMX {
+  host: string;
+  priority: number;
+  ttl: number;
+  ip: string;
+  location: string;
+  rtt: string;
+}
+
+export interface DNSRecordA {
+  ip: string;
+  ttl: number;
+  location: string;
+  rtt: string;
+}
+
+export interface DNSRecordCNAME {
+  target: string;
+  ttl: number;
+  ip: string;
+  location: string;
+  rtt: string;
+}
+
+export interface DNSRecordNS {
+  host: string;
+  ttl: number;
+  ip: string;
+  location: string;
+  rtt: string;
+}
+
+export interface DNSRecordTXT {
+  txt: string;
+  ttl: number;
+  rtt: string;
+}
+
+export interface DNSRecordPTR {
+  ptr: string;
+  ttl: number;
+  ip: string;
+  location: string;
+  rtt: string;
+}
+
+export interface DNSRecordPing {
+  ip: string;
+  location: string;
+  rtt: string;
+  ping_time: string;
 }

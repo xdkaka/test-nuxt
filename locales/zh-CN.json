@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "亚太-中国-香港",
   "default-seo-title": "Lookup DNS - 专业的DNS解析检测与网络诊断工具",
   "default-seo-keywords": "Lookup DNS,DNS查询,MX记录查询,A记录查询,CNAME记录查询,NS记录查询,TXT记录查询,PTR反向解析,Ping检测,域名解析检测,DNS工具,网络延迟测试,IP反查域名",
-  "default-seo-description": "专业的DNS在线查询与网络诊断工具,提供MX邮件服务器解析、A记录IP地址查询、CNAME别名解析、NS域名服务器检测、TXT文本记录查询、PTR反向解析以及多地区Ping网络延迟测试等功能,支持全球多地区检测,帮助快速诊断域名解析配置和网络访问质量问题"
+  "default-seo-description": "专业的DNS在线查询与网络诊断工具,提供MX邮件服务器解析、A记录IP地址查询、CNAME别名解析、NS域名服务器检测、TXT文本记录查询、PTR反向解析以及多地区Ping网络延迟测试等功能,支持全球多地区检测,帮助快速诊断域名解析配置和网络访问质量问题",
+  "chao-shi": "超时"
 }

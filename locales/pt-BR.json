@@ -83,5 +83,6 @@
   "region.ap-cn-hk": "Ásia-Pacífico-China-Hong Kong",
   "default-seo-title": "Lookup DNS - Ferramenta Profissional de Teste de Resolução DNS e Diagnóstico de Rede",
   "default-seo-keywords": "Lookup DNS, consulta DNS, consulta registro MX, consulta registro A, consulta registro CNAME, consulta registro NS, consulta registro TXT, consulta reversa PTR, teste Ping, teste de resolução de domínio, ferramentas DNS, teste de latência de rede, consulta IP para domínio",
-  "default-seo-description": "Ferramenta profissional online de consulta DNS e diagnóstico de rede oferecendo resolução de servidor de e-mail MX, consulta de endereço IP de registro A, resolução de alias CNAME, teste de servidor de nomes NS, consulta de registro TXT, consulta reversa PTR e teste de latência Ping multi-regional. Suporte a testes em regiões globais para ajudar no diagnóstico rápido de configurações de resolução de domínio e problemas de qualidade de acesso à rede."
+  "default-seo-description": "Ferramenta profissional online de consulta DNS e diagnóstico de rede oferecendo resolução de servidor de e-mail MX, consulta de endereço IP de registro A, resolução de alias CNAME, teste de servidor de nomes NS, consulta de registro TXT, consulta reversa PTR e teste de latência Ping multi-regional. Suporte a testes em regiões globais para ajudar no diagnóstico rápido de configurações de resolução de domínio e problemas de qualidade de acesso à rede.",
+  "chao-shi": "tempo esgotado"
 }
