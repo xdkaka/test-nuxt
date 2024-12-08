@@ -187,10 +187,7 @@
 
       <section v-if="!showTable" class="tips-section">
         <h2 class="tips-section__title">{{ t("ti-shi") }}</h2>
-        <div
-          class="tips-section__content"
-          v-html="currentType.htmlContent"
-        ></div>
+        
       </section>
     </main>
   </div>
@@ -213,6 +210,12 @@ interface SpanMethodProps {
   columnIndex: number;
 }
 
+interface Column {
+  prop?: string;
+  label?: string;
+  minWidth?: string;
+}
+
 const router = useRouter();
 const route = useRoute();
 const loading = ref<boolean>(false);
@@ -223,11 +226,9 @@ const shouldStop = ref<boolean>(false);
 
 // 根据当前记录类型获取对应的列配置
 const currentColumns = computed(() => {
-  return (
-    columnConfig[
-      currentQueryType.value.toLowerCase() as keyof typeof columnConfig
-    ] || []
-  );
+  const type = currentQueryType.value.toLowerCase() as keyof typeof columnConfig;
+  const columns = columnConfig[type] || [];
+  return (columns as unknown) as Column[];
 });
 
 const arraySpanMethod = ({
@@ -284,7 +285,7 @@ const currentType = computed(() => {
   };
 });
 
-// 从路由参数初始化输入框值
+// 从路由参数初始化输入框
 const username = ref<string>((route.query.host as string) || "");
 
 const tableData = ref<Dns[]>([]);
