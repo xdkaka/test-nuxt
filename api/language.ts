@@ -1,6 +1,4 @@
-type LocaleCode = "en-US" | "zh-CN" | "ja" | "de" | "es" | "fr" | "nb-NO" | "nl-NL" | "pt-BR" | "ru" | "sv-SE" | "tr" | "uk-UA" | "zh-TW";
-
-export const getLanguageList = () => {
+export function getLanguageList() {
   const languageList = [
     {
       language: "en-US",
@@ -68,8 +66,6 @@ export const getLanguageList = () => {
       language: "zh-TW",
       title: "繁體中文",
     },
-  ];  return languageList.map(item => ({
-    ...item,
-    language: item.language as LocaleCode
-  }));
-};
+  ];
+  return languageList;
+}
