@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     detectBrowserLanguage: {
       alwaysRedirect: false,
       fallbackLocale: 'en-US',
-      redirectOn: 'all',
+      redirectOn: 'root',
       useCookie: true,
       cookieCrossOrigin: true,
       cookieDomain: process.env.NODE_ENV === 'prod'?'*.lookup-dns.com':"localhost",
