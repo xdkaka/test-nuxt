@@ -47,3 +47,9 @@ useHead({
   min-height: 100vh;
 }
 </style>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage'
+}
+</script>

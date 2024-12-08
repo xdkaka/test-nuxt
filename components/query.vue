@@ -8,7 +8,7 @@
         <div class="search-form">
           <el-input
             v-model="username"
-            :placeholder="t('shu-ru-yu-ming-huo-ip')"
+            :placeholder="$t('shu-ru-yu-ming-huo-ip')"
             class="search-form__input"
             size="large"
             @keyup.enter="query"
@@ -32,14 +32,14 @@
           </el-input>
 
           <div class="dns-server dns-server-1">
-            <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+            <el-radio-group v-model="dnsServerType" size="small" @change="handleDnsServerTypeChange">
               <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
               <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
             </el-radio-group>
             <el-input
               v-model="dnsServer"
               :placeholder="t('dns-fu-wu-qi-di-zhi')"
-              size="mini"
+              size="small"
               :disabled="dnsServerType === 'default'"
               class="dns-server__input"
               @keyup.enter="query"
@@ -55,7 +55,7 @@
             :disabled="loading"
           >
             <el-icon v-if="!loading"><MagicStick /></el-icon>
-            <span class="button-text">{{ t('cha-xun') }}</span>
+            <span class="button-text">{{ $t('cha-xun') }}</span>
           </el-button>
 
           <el-button
@@ -71,14 +71,14 @@
         </div>
 
         <div class="dns-server dns-server-2">
-          <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+          <el-radio-group v-model="dnsServerType" size="small" @change="handleDnsServerTypeChange">
             <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
             <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
           </el-radio-group>
           <el-input
             v-model="dnsServer"
             :placeholder="t('dns-fu-wu-qi-di-zhi')"
-            size="mini"
+            size="small"
             :disabled="dnsServerType === 'default'"
             class="dns-server__input"
             style="width: 200px"
@@ -112,7 +112,7 @@
                 >
                   <DocumentCopy />
                 </el-icon>
-                <el-tag v-if="scope.row.location" type="warning" size="mini">
+                <el-tag v-if="scope.row.location" type="warning" size="small">
                   {{ scope.row.location }}
                 </el-tag>
               </div>
@@ -213,6 +213,12 @@ interface SpanMethodProps {
   columnIndex: number;
 }
 
+interface Column {
+  prop?: string;
+  label?: string;
+  minWidth?: string;
+}
+
 const router = useRouter();
 const route = useRoute();
 const loading = ref<boolean>(false);
@@ -223,11 +229,9 @@ const shouldStop = ref<boolean>(false);
 
 // 根据当前记录类型获取对应的列配置
 const currentColumns = computed(() => {
-  return (
-    columnConfig[
-      currentQueryType.value.toLowerCase() as keyof typeof columnConfig
-    ] || []
-  );
+  const type = currentQueryType.value.toLowerCase() as keyof typeof columnConfig;
+  const columns = columnConfig[type] || [];
+  return (columns as unknown) as Column[];
 });
 
 const arraySpanMethod = ({
@@ -262,10 +266,12 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 };
 
 // 响应式变量定义
-const { t } = useI18n();
+const { t } = useI18n({
+  useScope: 'global'
+});
 
 // 使用提取的组合式函数
-const { currentPath, currentQueryType } = useQueryType()
+const { currentQueryType } = useQueryType()
 
 // 如果currentQueryType为空,设置为a
 if (!currentQueryType.value) {
@@ -282,7 +288,7 @@ const currentType = computed(() => {
   };
 });
 
-// 从路由参数初始化输入框值
+// 从路由参数初始化输入框
 const username = ref<string>((route.query.host as string) || "");
 
 const tableData = ref<Dns[]>([]);
@@ -311,18 +317,20 @@ const handleTypeChange = (value: string) => {
 };
 
 // 处理DNS服务器类型变更
-const handleDnsServerTypeChange = (value: string) => {
-  if (value === 'default') {
-    dnsServer.value = '127.0.0.1';
-  }
-  // 更新URL参数
-  router.push({
-    query: {
-      ...route.query,
-      dns_server_type: value,
-      dns_server: dnsServer.value
+const handleDnsServerTypeChange = (value: string | number | boolean | undefined) => {
+  if (typeof value === 'string') {
+    if (value === 'default') {
+      dnsServer.value = '127.0.0.1';
     }
-  });
+    // 更新URL参数
+    router.push({
+      query: {
+        ...route.query,
+        dns_server_type: value,
+        dns_server: dnsServer.value
+      }
+    });
+  }
 };
 
 // 复制到剪贴板
