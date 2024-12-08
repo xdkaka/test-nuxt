@@ -32,14 +32,14 @@
           </el-input>
 
           <div class="dns-server dns-server-1">
-            <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+            <el-radio-group v-model="dnsServerType" size="small" @change="handleDnsServerTypeChange">
               <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
               <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
             </el-radio-group>
             <el-input
               v-model="dnsServer"
               :placeholder="t('dns-fu-wu-qi-di-zhi')"
-              size="mini"
+              size="small"
               :disabled="dnsServerType === 'default'"
               class="dns-server__input"
               @keyup.enter="query"
@@ -71,14 +71,14 @@
         </div>
 
         <div class="dns-server dns-server-2">
-          <el-radio-group v-model="dnsServerType" size="mini" @change="handleDnsServerTypeChange">
+          <el-radio-group v-model="dnsServerType" size="small" @change="handleDnsServerTypeChange">
             <el-radio-button :label="t('mo-ren-dns-fu-wu-qi')" value="default" />
             <el-radio-button :label="t('zhi-ding-dns-fu-wu-qi')" value="custom" />
           </el-radio-group>
           <el-input
             v-model="dnsServer"
             :placeholder="t('dns-fu-wu-qi-di-zhi')"
-            size="mini"
+            size="small"
             :disabled="dnsServerType === 'default'"
             class="dns-server__input"
             style="width: 200px"
@@ -112,7 +112,7 @@
                 >
                   <DocumentCopy />
                 </el-icon>
-                <el-tag v-if="scope.row.location" type="warning" size="mini">
+                <el-tag v-if="scope.row.location" type="warning" size="small">
                   {{ scope.row.location }}
                 </el-tag>
               </div>
@@ -262,7 +262,7 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 };
 
 // 响应式变量定义
-const { t } = useI18n();
+const { t,locale } = useI18n();
 
 // 使用提取的组合式函数
 const { currentPath, currentQueryType } = useQueryType()
@@ -311,18 +311,20 @@ const handleTypeChange = (value: string) => {
 };
 
 // 处理DNS服务器类型变更
-const handleDnsServerTypeChange = (value: string) => {
-  if (value === 'default') {
-    dnsServer.value = '127.0.0.1';
-  }
-  // 更新URL参数
-  router.push({
-    query: {
-      ...route.query,
-      dns_server_type: value,
-      dns_server: dnsServer.value
+const handleDnsServerTypeChange = (value: string | number | boolean | undefined) => {
+  if (typeof value === 'string') {
+    if (value === 'default') {
+      dnsServer.value = '127.0.0.1';
     }
-  });
+    // 更新URL参数
+    router.push({
+      query: {
+        ...route.query,
+        dns_server_type: value,
+        dns_server: dnsServer.value
+      }
+    });
+  }
 };
 
 // 复制到剪贴板
@@ -587,6 +589,15 @@ const query = async () => {
     loading.value = false;
   }
 };
+
+// 添加调试代码
+watchEffect(() => {
+  console.log('Current locale:', locale.value)
+  console.log('Translation test:', {
+    'cha-xun': t('cha-xun'),
+    'shu-ru-yu-ming-huo-ip': t('shu-ru-yu-ming-huo-ip')
+  })
+})
 
 </script>
 
