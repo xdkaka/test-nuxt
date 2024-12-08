@@ -22,7 +22,7 @@
   "shi-bai": "Failed",
   "jian-ce-di-qu": "Test Region",
   "ji-lu-zhi": "Record Value",
-  "xiang-ying-shi-jian": "RTT",
+  "xiang-ying-shi-jian": "Response Time",
   "you-xian-ji": "Priority",
   "mx-jie-xi": "MX Resolution",
   "a-jie-xi": "A Resolution",
@@ -83,5 +83,6 @@
   "default-seo-title": "Lookup DNS - Professional DNS Resolution Testing & Network Diagnostic Tool",
   "default-seo-keywords": "Lookup DNS, DNS lookup, MX record lookup, A record lookup, CNAME record lookup, NS record lookup, TXT record lookup, PTR reverse lookup, Ping test, domain resolution testing, DNS tools, network latency test, IP to domain lookup",
   "default-seo-description": "Professional DNS online lookup and network diagnostic tool providing MX mail server resolution, A record IP address lookup, CNAME alias resolution, NS nameserver testing, TXT record lookup, PTR reverse lookup and multi-region Ping latency testing. Supporting global region testing to help quickly diagnose domain resolution configuration and network access quality issues.",
-  "chao-shi": "Timeout"
+  "chao-shi": "Timeout",
+  "region.cn_bj": "China-Beijing"
 }
