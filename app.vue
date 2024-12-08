@@ -4,7 +4,20 @@
   </div>
 </template>
 <script lang="ts" setup>
+const { locale } = useI18n()
+const route = useRoute()
 
+// 监听路由变化
+watch(
+  () => route.path,
+  async (newPath) => {
+    const newLocale = newPath.split('/')[1] as "en-US" | "zh-CN" | "ja" | "de" | "es" | "fr" | "nb-NO" | "nl-NL" | "pt-BR" | "ru" | "sv-SE" | "tr" | "uk-UA" | "zh-TW"
+    if (newLocale && newLocale !== locale.value) {
+      locale.value = newLocale
+    }
+  },
+  { immediate: true }
+)
 </script>
 <style>
 @import 'element-plus/dist/index.css';
