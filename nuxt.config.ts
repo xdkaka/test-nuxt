@@ -15,6 +15,9 @@ export default defineNuxtConfig({
     preset: 'static',
   },
   i18n: {
+    baseUrl: process.env.NODE_ENV === 'production'
+      ? 'https://lookup-dns.com'
+      : 'http://localhost:9529',
     lazy: true,
     langDir: "locales",
     strategy: "prefix_except_default",
