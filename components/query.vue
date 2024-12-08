@@ -8,7 +8,7 @@
         <div class="search-form">
           <el-input
             v-model="username"
-            :placeholder="t('shu-ru-yu-ming-huo-ip')"
+            :placeholder="$t('shu-ru-yu-ming-huo-ip')"
             class="search-form__input"
             size="large"
             @keyup.enter="query"
@@ -55,7 +55,7 @@
             :disabled="loading"
           >
             <el-icon v-if="!loading"><MagicStick /></el-icon>
-            <span class="button-text">{{ t('cha-xun') }}</span>
+            <span class="button-text">{{ $t('cha-xun') }}</span>
           </el-button>
 
           <el-button
@@ -262,7 +262,9 @@ const tableRowClassName = ({ row }: { row: Dns; rowIndex: number }) => {
 };
 
 // 响应式变量定义
-const { t,locale } = useI18n();
+const { t, locale } = useI18n({
+  useScope: 'global'
+});
 
 // 使用提取的组合式函数
 const { currentPath, currentQueryType } = useQueryType()
@@ -589,15 +591,6 @@ const query = async () => {
     loading.value = false;
   }
 };
-
-// 添加调试代码
-watchEffect(() => {
-  console.log('Current locale:', locale.value)
-  console.log('Translation test:', {
-    'cha-xun': t('cha-xun'),
-    'shu-ru-yu-ming-huo-ip': t('shu-ru-yu-ming-huo-ip')
-  })
-})
 
 </script>
 
