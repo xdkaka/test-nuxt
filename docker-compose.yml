@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+
+  # yarn build-prod
+  # cd /Users/zyk/www/Domain_Mail/Domain/client_web/rl_fe/dist/ && yarn build-pinmx-dev
+  lookup_dns_fe:
+    hostname: web-server
+    restart: always
+    image: docker-hub.cuiqiu.com/weiqu/weiqu-nginx:1.25.3
+    container_name: lookup_dns_fe
+    platform: linux/amd64
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./dist/:/usr/share/nginx/html
