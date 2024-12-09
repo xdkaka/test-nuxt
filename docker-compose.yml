@@ -3,14 +3,12 @@ services:
 
   # yarn build-prod
   # yarn build-prod && docker-compose down && docker-compose up -d
-  lookup_dns_fe:
+  test_fe:
     hostname: web-server
     restart: always
     image: docker-hub.cuiqiu.com/weiqu/weiqu-nginx:1.25.3
-    container_name: lookup_dns_fe
+    container_name: test_fe
     platform: linux/amd64
-    environment:
-      - TZ=Asia/Shanghai
     ports:
       - 80:80
     volumes:
