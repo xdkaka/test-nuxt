@@ -1,8 +1,6 @@
-<script setup lang="ts">
-// 动态导入默认语言的页面组件
-const Index = defineAsyncComponent(() => import('./[lang]/index.vue'))
-</script>
-
 <template>
-  <Index />
+  <div class="body">
+    <div v-html="$t('shu-ru-yu-ming-huo-ip')"></div>
+    {{ $t('shu-ru-yu-ming-huo-ip') }}
+  </div>
 </template>

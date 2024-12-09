@@ -2,7 +2,7 @@ version: '3.2'
 services:
 
   # yarn build-prod
-  # cd /Users/zyk/www/Domain_Mail/Domain/client_web/rl_fe/dist/ && yarn build-pinmx-dev
+  # yarn build-prod && docker-compose down && docker-compose up -d
   lookup_dns_fe:
     hostname: web-server
     restart: always
